@@ -1,0 +1,30 @@
+{
+  "name": "@repo/utils",
+  "version": "0.0.0",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "license": "MIT",
+  "scripts": {
+    "build": "rm -rf dist && tsc",
+    "check-types": "tsc --noEmit",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist"
+  },
+  "devDependencies": {
+    "@repo/tailwind-config": "*",
+    "@repo/typescript-config": "*",
+    "@tailwindcss/cli": "^4.1.5",
+    "@types/react": "^19.1.0",
+    "tailwindcss": "^4.1.5",
+    "typescript": "5.9.2"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^3.4.0"
+  }
+}
