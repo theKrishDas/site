@@ -1,7 +1,7 @@
 import "@repo/ui/styles.css"
 import "./globals.css"
 import type { Metadata } from "next"
-import { instrumentSerif, inter, jetbrainsMono } from "@/lib/fonts"
+import { instrumentSerif, inter, jetbrainsMono, sfPro } from "@/lib/fonts"
 
 import Provider from "./provider"
 
@@ -17,7 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <html
-      className={`${inter.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable}`}
+      className={`${inter.variable} ${sfPro.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable}`}
       lang="en"
       suppressHydrationWarning
     >
