@@ -2,6 +2,7 @@
 @import "@repo/tailwind-config";
 @import "fumadocs-ui/css/neutral.css";
 @import "fumadocs-ui/css/preset.css";
+@import "../css/prose-custom.css";
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {

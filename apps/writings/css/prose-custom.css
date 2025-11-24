@@ -1,0 +1,39 @@
+@utility prose {
+  --tw-prose-body: oklch(0.375 0 0);
+  @variant dark {
+    --tw-prose-body: oklch(0.875 0 0);
+  }
+
+  h2 {
+    @apply text-base font-semibold text-[oklch(0.3_0_0)] dark:text-white decoration-[1.5px];
+    @apply mb-6 mt-12 md:mt-14;
+    scroll-margin-top: 2rem;
+  }
+
+  h3 {
+    @apply text-[0.9rem] font-semibold tracking-[0.01em] text-[oklch(0.3_0_0)] dark:text-white decoration-[1.5px];
+    @apply mb-6 mt-12 md:mt-14;
+    scroll-margin-top: 2rem;
+  }
+
+  p {
+    @apply mb-6.5;
+    em {
+      @apply font-instrument-serif italic;
+
+      /* TODO: Use custom font later */
+      font-family: "FreeSerif", serif;
+      @apply text-lg;
+    }
+  }
+
+  a {
+    @apply decoration-separator-opaque;
+  }
+
+  img {
+    border-radius: 1.375rem;
+    /* biome-ignore lint/correctness/noUnknownProperty: it does exisit */
+    corner-shape: squircle;
+  }
+}

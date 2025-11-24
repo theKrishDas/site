@@ -4,7 +4,7 @@ export const inter = Inter({
   variable: "--font-inter",
   display: "swap",
   subsets: ["latin"],
-  weight: ["400", "700"],
+  weight: ["300", "400", "500", "600", "700", "800"],
   style: ["normal"],
   fallback: [
     "system-ui",
