@@ -4,6 +4,7 @@ import { Spacer } from "@/components/spacer"
 import { Header } from "@/components/upsher-header"
 import { SocialIcon } from "./local-components/Socials"
 import Writings from "./local-components/Writings"
+import { Newsletter } from "./local-components/Newsletter"
 
 export default function Page() {
   return (
@@ -39,6 +40,9 @@ export default function Page() {
 
           <Spacer className="h-1.5" />
           <Writings />
+
+          <Spacer className="h-1.5" />
+          <Newsletter />
         </main>
       </Container>
 

@@ -24,3 +24,6 @@ export default function Rayso({
     />
   )
 }
+
+// Ios window shadow
+// shadow-[0px_20px_76px_rgba(0,0,0,0.2)]
