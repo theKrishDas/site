@@ -24,7 +24,7 @@ export default function Writings() {
             <Link
               className={cn(
                 "group/writing-link select-nono prose flex cursor-default items-center gap-4",
-                "h-12 after:h-12",
+                "h-11 after:h-11",
                 "after:-z-1 after:absolute after:inset-x-0 after:bg-fill-quaternary/70 after:opacity-0 after:content-[''] hover:after:opacity-100"
               )}
               href={w.url}
@@ -32,7 +32,7 @@ export default function Writings() {
               <span className="block flex-1 truncate group-hover/writing-link:text-ios-blue">
                 {w.data.title}
               </span>
-              <span className="font-jetbrains-mono font-normal text-label-tertiary text-sm uppercase tracking-tight">
+              <span className="hidden font-jetbrains-mono font-normal text-label-tertiary text-sm uppercase tracking-tight md:block">
                 {format(publishDate, "MMM ''dd")}
               </span>
             </Link>
