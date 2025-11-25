@@ -48,7 +48,8 @@
         "noUnknownAtRules": "off"
       },
       "style": {
-        "useBlockStatements": "off"
+        "useBlockStatements": "off",
+        "useFilenamingConvention": "off"
       }
     },
     "domains": {

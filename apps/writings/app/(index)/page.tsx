@@ -2,9 +2,9 @@ import { Container } from "@/components/container"
 import { Footer } from "@/components/footer"
 import { Spacer } from "@/components/spacer"
 import { Header } from "@/components/upsher-header"
+import { Newsletter } from "./local-components/Newsletter"
 import { SocialIcon } from "./local-components/Socials"
 import Writings from "./local-components/Writings"
-import { Newsletter } from "./local-components/Newsletter"
 
 export default function Page() {
   return (
