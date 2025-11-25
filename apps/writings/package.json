@@ -11,6 +11,7 @@
     "clean:dev": "bunx rimraf .next && next dev --port 3001"
   },
   "dependencies": {
+    "@radix-ui/react-slot": "^1.2.4",
     "@repo/ui": "*",
     "@repo/utils": "workspace:*",
     "@types/mdx": "^2.0.13",

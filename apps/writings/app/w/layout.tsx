@@ -1,7 +1,6 @@
-import { cn } from "@repo/utils"
 import { ThemeToggle } from "fumadocs-ui/components/layout/theme-toggle"
 import { DocsLayout } from "fumadocs-ui/layouts/docs"
-import Link from "next/link"
+import { Header } from "@/components/upsher-header"
 import { baseOptions } from "@/lib/layout.shared"
 import { source } from "@/lib/source"
 
@@ -10,30 +9,13 @@ export default function Layout({ children }: LayoutProps<"/w">) {
     <DocsLayout
       tree={source.pageTree}
       {...baseOptions()}
-      nav={{ component: <Nav /> }}
+      nav={{ component: <Header /> }}
       searchToggle={{ enabled: false }}
       sidebar={{ enabled: false }}
     >
       {children}
       <Footer />
     </DocsLayout>
-  )
-}
-
-function Nav() {
-  return (
-    <nav className="mx-auto mt-12 mb-25 w-full select-none px-4 md:max-w-160 md:px-0">
-      <Link
-        className={cn(
-          "cursor-pointer font-semibold font-sfpro text-[oklch(0.375_0_0)] tracking-[-0.01em] after:content-['.'] dark:text-[oklch(0.875_0_0)]",
-          "decoration-2 decoration-ios-blue hover:underline"
-        )}
-        href="/"
-      >
-        Upsher
-      </Link>
-      <p className="text-label-secondary">Webapp engineer</p>
-    </nav>
   )
 }
 

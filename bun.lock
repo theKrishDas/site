@@ -13,6 +13,7 @@
       "name": "writings",
       "version": "1.0.0",
       "dependencies": {
+        "@radix-ui/react-slot": "^1.2.4",
         "@repo/ui": "*",
         "@repo/utils": "workspace:*",
         "@types/mdx": "^2.0.13",
