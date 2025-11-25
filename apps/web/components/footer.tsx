@@ -1,5 +1,5 @@
-import { ThemeToggle } from "fumadocs-ui/components/layout/theme-toggle"
 import { Container } from "./container"
+import { ThemeToggle } from "./theme-toggle"
 
 export function Footer() {
   const footerInfo = {
@@ -9,7 +9,8 @@ export function Footer() {
 
   return (
     <Container asChild>
-      <footer className="mt-20 mb-6 flex w-full items-center justify-between">
+      {/** setting explicit height prevents layout shift caused by the ThemeToggle */}
+      <footer className="mt-20 mb-6 flex min-h-6 w-full items-center justify-between">
         <div className="pointer-events-none flex select-none items-center gap-2.5 font-jetbrains-mono font-normal text-label-tertiary text-sm tracking-tight">
           <span>
             <span className="copyright mr-1 font-sfpro">&copy;</span>
@@ -20,12 +21,6 @@ export function Footer() {
             {footerInfo.location}
           </span>
         </div>
-
-        {/* <div className=""> */}
-        {/*   <span className="select-none font-jetbrains-mono font-normal text-label-tertiary text-sm uppercase tracking-tight before:mr-1.5 before:font-sfpro before:content-['􀆮']"> */}
-        {/*     System */}
-        {/*   </span> */}
-        {/* </div> */}
 
         <ThemeToggle />
       </footer>
