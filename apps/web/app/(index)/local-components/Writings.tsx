@@ -5,8 +5,7 @@ import { Heading } from "@/components/section-heading"
 import { source } from "@/lib/source"
 
 export default function Writings() {
-  const publishDate = new Date()
-  const writings = source.getPages()
+  const writings = source.getPages().filter((w) => w.data.index)
 
   return (
     <>
@@ -26,7 +25,7 @@ export default function Writings() {
                 {w.data.title}
               </span>
               <span className="hidden font-jetbrains-mono font-normal text-label-tertiary text-sm uppercase tracking-tight md:block">
-                {format(publishDate, "MMM ''dd")}
+                {format(w.data.date, "MMM ''dd")}
               </span>
             </Link>
           </li>

@@ -1,4 +1,5 @@
 import { cn } from "@repo/utils"
+import { format } from "date-fns"
 import { createRelativeLink } from "fumadocs-ui/mdx"
 import { DocsTitle } from "fumadocs-ui/page"
 import type { Metadata } from "next"
@@ -30,7 +31,9 @@ export default async function Page(props: PageProps<"/w/[[...slug]]">) {
           {page.data.title}
         </DocsTitle>
 
-        <Meta />
+        <div className="mt-5.5 flex items-center gap-5 font-jetbrains-mono font-normal text-label-tertiary text-sm uppercase tracking-tight">
+          <p>{format(page.data.date, "MMM dd, yyyy")}</p>
+        </div>
 
         <div className="h-15" />
         <div className="prose flex-1">
@@ -60,13 +63,4 @@ export async function generateMetadata(
     title: page.data.title,
     description: page.data.description,
   }
-}
-
-function Meta() {
-  const publishDate = "oct 29, 2024"
-  return (
-    <div className="mt-5.5 flex items-center gap-5 font-jetbrains-mono font-normal text-label-tertiary text-sm uppercase tracking-tight">
-      <p>{publishDate}</p>
-    </div>
-  )
 }
