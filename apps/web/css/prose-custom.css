@@ -18,12 +18,16 @@
 
   p {
     @apply mb-6.5;
-    em {
-      @apply font-instrument-serif italic;
+  }
 
-      /* TODO: Use custom font later */
-      font-family: "FreeSerif", serif;
-      @apply text-lg;
+  em {
+    @apply font-source-serif text-lg italic;
+  }
+
+  blockquote {
+    @apply text-2xl leading-[1.33] md:text-3xl font-source-serif font-normal not-italic;
+    em {
+      font-size: 1.025em;
     }
   }
 

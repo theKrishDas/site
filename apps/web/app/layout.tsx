@@ -1,6 +1,12 @@
 import "@repo/ui/styles.css"
 import "./globals.css"
-import { instrumentSerif, inter, jetbrainsMono, sfPro } from "@/lib/fonts"
+import {
+  instrumentSerif,
+  inter,
+  jetbrainsMono,
+  sfPro,
+  sourceSerif,
+} from "@/lib/fonts"
 import { siteMetadata } from "@/lib/metadata"
 import Provider from "./provider"
 
@@ -13,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html
-      className={`${inter.variable} ${sfPro.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable}`}
+      className={`${inter.variable} ${sfPro.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable} ${sourceSerif.variable}`}
       lang="en"
       suppressHydrationWarning
     >

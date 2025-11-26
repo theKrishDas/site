@@ -1,4 +1,9 @@
-import { Instrument_Serif, Inter, JetBrains_Mono } from "next/font/google"
+import {
+  Instrument_Serif,
+  Inter,
+  JetBrains_Mono,
+  Source_Serif_4,
+} from "next/font/google"
 import localFont from "next/font/local"
 
 export const sfPro = localFont({
@@ -45,6 +50,22 @@ export const inter = Inter({
     "Apple Color Emoji",
     "Segoe UI Emoji",
     "sans-serif",
+  ],
+})
+
+export const sourceSerif = Source_Serif_4({
+  variable: "--font-source-serif",
+  display: "swap",
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  fallback: [
+    "Georgia",
+    "Times New Roman",
+    "Times",
+    "serif",
+    "Apple Color Emoji",
+    "Segoe UI Emoji",
   ],
 })
 
