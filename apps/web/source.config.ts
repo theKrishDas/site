@@ -27,8 +27,8 @@ export default defineConfig({
     rehypeCodeOptions: {
       themes: {
         // visit https://shiki.style/themes
-        dark: "catppuccin-mocha",
-        light: "catppuccin-latte",
+        dark: "github-dark",
+        light: "github-light",
       },
     },
   },

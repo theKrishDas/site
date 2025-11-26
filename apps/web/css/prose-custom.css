@@ -36,4 +36,15 @@
     /* biome-ignore lint/correctness/noUnknownProperty: it does exisit */
     corner-shape: squircle;
   }
+
+  figure {
+    @media (max-width: 640px) {
+      /* These variables are coming from the <Container /> component */
+      /* therefore theses styles will only work if it is inside the container component */
+      margin-left: calc(-1 * var(--container-padding));
+      margin-right: calc(-1 * var(--container-padding));
+      width: calc(100% + 2 * var(--container-padding));
+      border-radius: 0;
+    }
+  }
 }

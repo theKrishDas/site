@@ -16,6 +16,7 @@ function Container({
       className={cn(
         "__container mx-auto w-full md:max-w-160",
         "px-6 md:px-0",
+        "[--container-padding:1.5rem]",
         className
       )}
       {...rest}
