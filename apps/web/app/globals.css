@@ -25,6 +25,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+:root {
+  --color-fd-card: var(--background-primary);
+}
+.dark {
+  --color-fd-card: hsl(0, 0%, 9.8%);
+}
+
 code,
 pre,
 pre code {
