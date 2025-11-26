@@ -27,9 +27,11 @@ body {
 
 :root {
   --color-fd-card: var(--background-primary);
+  --color-fd-secondary: oklch(99.5% 0 0);
 }
 .dark {
   --color-fd-card: hsl(0, 0%, 9.8%);
+  --color-fd-secondary: hsl(0, 0%, 12.9%);
 }
 
 code,

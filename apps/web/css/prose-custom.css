@@ -52,4 +52,29 @@
     /* depends on @repo/tailwind-config/utils */
     @apply max-sm:flush-width;
   }
+
+  /* Remove shadows from code blocks */
+  pre:not(.not-fumadocs-codeblock *),
+  code:not(.not-fumadocs-codeblock *),
+  .shiki,
+  figure.shiki,
+  [data-rehype-pretty-code-fragment],
+  [data-rehype-pretty-code-figure] {
+    box-shadow: none;
+  }
+}
+
+.shiki:not(.not-fumadocs-codeblock *) {
+  box-shadow: none;
+}
+.dark .shiki:not(.not-fumadocs-codeblock *) {
+  box-shadow: none;
+}
+
+/* Additional overrides for any container elements that might have shadows */
+[data-rehype-pretty-code-fragment],
+[data-rehype-pretty-code-figure],
+.fumadocs-codeblock,
+.fumadocs-codeblock-container {
+  box-shadow: none;
 }
