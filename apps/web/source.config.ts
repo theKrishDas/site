@@ -25,6 +25,7 @@ export const docs = defineDocs({
 export default defineConfig({
   mdxOptions: {
     rehypeCodeOptions: {
+      inline: "tailing-curly-colon",
       themes: {
         // visit https://shiki.style/themes
         dark: "github-dark",
