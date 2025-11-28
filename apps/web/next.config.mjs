@@ -8,6 +8,9 @@ const nextConfig = {
   reactCompiler: true,
   allowedDevOrigins: ["192.168.1.*"],
   transpilePackages: ["@repo/utils"],
+  devIndicators: {
+    position: "top-right",
+  },
 }
 
 const withMDX = createMDX()
