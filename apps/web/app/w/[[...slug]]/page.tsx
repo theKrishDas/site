@@ -5,6 +5,7 @@ import { DocsTitle } from "fumadocs-ui/page"
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { Container } from "@/components/container"
+import { Spacer } from "@/components/spacer"
 import { source } from "@/lib/source"
 import { getMDXComponents } from "@/mdx-components"
 
@@ -35,7 +36,9 @@ export default async function Page(props: PageProps<"/w/[[...slug]]">) {
           <p>{format(page.data.date, "MMM dd, yyyy")}</p>
         </div>
 
-        <div className="h-15" />
+        {/* Use margin instead of height so that the space overlaps */}
+        <Spacer className="mb-15 h-0" />
+
         <div className="prose flex-1">
           <MDX
             components={getMDXComponents({
