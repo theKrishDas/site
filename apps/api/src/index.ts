@@ -2,6 +2,7 @@
 
 import { Hono } from "hono"
 import { Resend } from "resend"
+import { STATUS } from "@/lib/constants/status"
 
 const app = new Hono()
 const resend = new Resend(process.env.RESEND_API_KEY)
@@ -16,10 +17,10 @@ app.get("/", async (c) => {
 
   if (error) {
     console.error({ error })
-    return c.json({ error })
+    return c.json({ error }, STATUS.INTERNAL_ERROR)
   }
 
-  return c.json(data)
+  return c.json(data, STATUS.OK)
 })
 
 export default {
