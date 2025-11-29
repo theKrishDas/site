@@ -12,11 +12,12 @@
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.4",
+    "@repo/backend": "workspace:*",
     "@repo/ui": "*",
     "@repo/utils": "workspace:*",
+    "@tanstack/react-form": "^1.26.0",
     "@types/mdx": "^2.0.13",
     "convex": "^1.29.3",
-    "@repo/backend": "workspace:*",
     "date-fns": "^4.1.0",
     "fumadocs-core": "^16.1.0",
     "fumadocs-mdx": "^13.0.8",
