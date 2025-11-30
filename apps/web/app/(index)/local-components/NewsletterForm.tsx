@@ -77,7 +77,7 @@ export function NewsletterForm(props: {
 
                 {/* submit button */}
                 <button
-                  className="relative h-10 cursor-default touch-none select-none rounded-lg bg-ios-blue px-3 font-sfpro text-[0.9rem] text-white md:h-8 md:px-2.5"
+                  className="relative h-10 cursor-default select-none rounded-lg bg-ios-blue px-3 font-sfpro text-[0.9rem] text-white md:h-8 md:px-2.5"
                   style={
                     {
                       borderRadius: "12px",
