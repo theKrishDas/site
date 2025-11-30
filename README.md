@@ -1,4 +1,30 @@
-# Turborepo Tailwind CSS starter with Biome
+[![Banner](./docs/banner.png)](https://upsher.dev)
+
+<div align="center">
+
+<a href="https://upsher.dev">Site</a>
+<span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+<a href="https://upsher.dev">Writing</a>
+
+<p align="center">
+  <a href="https://twitter.com/intent/follow?screen_name=theupsher">
+    <img src="https://img.shields.io/twitter/follow/theupsher.svg?label=Follow%20@theupsher" alt="Follow @theupsher" />
+  </a>
+</p>
+
+</div>
+
+---
+
+# Upsher.dev
+
+Hey, this is my personal site. It's a place where I share my work and what I'm about.
+
+## About This Project
+
+I built this site to share my work, thoughts and connect with others. It's constantly evolving. The goal was to create something clean, fast, and genuinely me.
+
+If you spot something interesting or have questions about how something works, feel free to reach out.
 
 ## What's inside?
 
@@ -7,7 +33,7 @@ This Turborepo includes the following packages/apps:
 ### Apps and Packages
 
 - `web`: a [Next.js](https://nextjs.org/) app with [Tailwind CSS](https://tailwindcss.com/)
-- `backend`: a backend package
+- `backend`: a backend package with [convex](https://convex.dev)
 - `ui`: a React component library with [Tailwind CSS](https://tailwindcss.com/) shared by applications
 - `utils`: a utilities package
 - `tailwind-config`: shared Tailwind CSS configuration
@@ -15,55 +41,47 @@ This Turborepo includes the following packages/apps:
 
 Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
 
-### Utilities
+### Development Tools
 
-This Turborepo has some additional tools already setup for you:
+This project uses modern tooling for a great developer experience:
 
-- [Tailwind CSS](https://tailwindcss.com/) for styles
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [Biome](https://biomejs.dev/) for formatting and linting (via [Ultracite](https://www.ultracite.ai/))
+- [Tailwind CSS](https://tailwindcss.com/) for styling
+- [TypeScript](https://www.typescriptlang.org/) for type safety
+- [Biome](https://biomejs.dev/) via [Ultracite](https://www.ultracite.ai/) for formatting and linting
+- [Bun](https://bun.sh/) for fast package management and scripting
 
-### Tooling Configuration
+## Getting Started
 
-This project uses [Ultracite](https://www.ultracite.ai), a zero-config Biome preset that enforces strict code quality standards through automated formatting and linting.
-
-Key features:
-
-- **Format code**: `bun run fix`
-- **Check for issues**: `bun run check`
-- **Diagnose setup**: `npx ultracite@latest doctor`
-
-Biome (the underlying engine) provides extremely fast Rust-based linting and formatting. Most issues are automatically fixable.
-
-The configuration is defined in `biome.json` and extends Ultracite presets for both core JavaScript/TypeScript and Next.js specific rules.
-
-## Running locally
+To run this site locally:
 
 ```sh
 bunx turbo dev
 ```
 
-## Building
+This will start the development server available at http://localhost:3000
+
+### Building for Production
 
 ```sh
 bunx turbo build
 ```
 
-## Code Quality
+### Code Quality Commands
 
-This project uses Biome with Ultracite for code quality enforcement:
+Maintaining code quality is important to me. Here are the commands I use:
 
-- Check for issues: `bun run check`
-- Fix issues: `bun run fix`
-- Type checking: `bun run check-types`
-- Clean build artifacts: `bun run clean`
+- **Check for issues**: `bun turbo check`
+- **Format code**: `bun turbo fix`
+- **Type checking**: `bun turbo check-types`
+- **Clean build artifacts**: `bun turbo clean`
+- **Diagnose setup**: `bunx ultracite@latest doctor`
 
-## Workspace Structure
+## Project Structure
 
 The repository is organized as a monorepo with the following workspace structure:
 
 - `apps/web`: Main Next.js application
-- `packages/backend`: Backend functionality
+- `packages/backend`: Backend functionality with Convex
 - `packages/ui`: Shared UI components
 - `packages/utils`: Utility functions
 - `tooling/tailwind-config`: Shared Tailwind configuration
