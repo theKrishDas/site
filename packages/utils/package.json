@@ -18,9 +18,9 @@
   "devDependencies": {
     "@repo/tailwind-config": "*",
     "@repo/typescript-config": "*",
-    "@tailwindcss/cli": "^4.1.5",
-    "@types/react": "^19.1.0",
-    "tailwindcss": "^4.1.5",
+    "@tailwindcss/cli": "^4.1.17",
+    "@types/react": "^19.2.7",
+    "tailwindcss": "^4.1.17",
     "typescript": "5.9.2"
   },
   "dependencies": {

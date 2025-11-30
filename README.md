@@ -1,4 +1,30 @@
-# Turborepo Tailwind CSS starter with Biome
+[![Banner](./docs/banner.png)](https://upsher.dev)
+
+<div align="center">
+
+<a href="https://upsher.dev">Site</a>
+<span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+<a href="https://upsher.dev">Writing</a>
+
+<p align="center">
+  <a href="https://twitter.com/intent/follow?screen_name=theupsher">
+    <img src="https://img.shields.io/twitter/follow/theupsher.svg?label=Follow%20@theupsher" alt="Follow @theupsher" />
+  </a>
+</p>
+
+</div>
+
+---
+
+# Upsher.dev
+
+Hey, this is my personal site. It's a place where I share my work and what I'm about.
+
+## About This Project
+
+I built this site to share my work, thoughts and connect with others. It's constantly evolving. The goal was to create something clean, fast, and genuinely me.
+
+If you spot something interesting or have questions about how something works, feel free to reach out.
 
 ## What's inside?
 
@@ -6,81 +32,59 @@ This Turborepo includes the following packages/apps:
 
 ### Apps and Packages
 
-- `base`: a [Next.js](https://nextjs.org/) app with [Tailwind CSS](https://tailwindcss.com/)
-- `www`: another [Next.js](https://nextjs.org/) app with [Tailwind CSS](https://tailwindcss.com/)
-- `ui`: a stub React component library with [Tailwind CSS](https://tailwindcss.com/) shared by both `www` and `base` applications
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+- `web`: a [Next.js](https://nextjs.org/) app with [Tailwind CSS](https://tailwindcss.com/)
+- `backend`: a backend package with [convex](https://convex.dev)
+- `ui`: a React component library with [Tailwind CSS](https://tailwindcss.com/) shared by applications
+- `utils`: a utilities package
+- `tailwind-config`: shared Tailwind CSS configuration
+- `typescript-config`: shared TypeScript configuration
 
 Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
 
-### Building packages/ui
+### Development Tools
 
-This example is set up to produce compiled styles for `ui` components into the `dist` directory. The component `.tsx` files are consumed by the Next.js apps directly using `transpilePackages` in `next.config.ts`. This was chosen for several reasons:
+This project uses modern tooling for a great developer experience:
 
-- Make sharing Tailwind CSS configuration to apps and packages as easy as possible.
-- Make package compilation simple by only depending on the Next.js Compiler and `tailwindcss`.
-- Ensure Tailwind classes do not overwrite each other. The `ui` package uses a `ui-` prefix for it's classes.
-- Maintain clear package export boundaries.
+- [Tailwind CSS](https://tailwindcss.com/) for styling
+- [TypeScript](https://www.typescriptlang.org/) for type safety
+- [Biome](https://biomejs.dev/) via [Ultracite](https://www.ultracite.ai/) for formatting and linting
+- [Bun](https://bun.sh/) for fast package management and scripting
 
-Another option is to consume `packages/ui` directly from source without building. If using this option, you will need to ensure your apps are aware of your package locations, so Tailwind can find all usages of the `tailwindcss` class names for CSS compilation.
+## Getting Started
 
-If you choose this strategy, you can remove the `tailwindcss` dependency from the `ui` package.
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [Tailwind CSS](https://tailwindcss.com/) for styles
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [Biome](https://biomejs.dev/) for formatting and linting (via [Ultracite](https://www.ultracite.ai/))
-
-### Tooling Configuration
-
-This project uses [Ultracite](https://www.ultracite.ai), a zero-config Biome preset that enforces strict code quality standards through automated formatting and linting.
-
-Key features:
-
-- **Format code**: `bun run fix`
-- **Check for issues**: `bun run check`
-- **Diagnose setup**: `npx ultracite@latest doctor`
-
-Biome (the underlying engine) provides extremely fast Rust-based linting and formatting. Most issues are automatically fixable.
-
-The configuration is defined in `biome.json` and extends Ultracite presets for both core JavaScript/TypeScript and Next.js specific rules.
-
-## Cloning:
-
-### Clone Nextkit:
-
-```sh
-git clone -b monorep-with-tailwind https://github.com/Krish-Das/nextkit.git
-```
-
-### or Clone in current directory:
-
-```sh
-git clone -b monorep-with-tailwind https://github.com/Krish-Das/nextkit.git .
-```
-
-### or Clone single branch in current directory:
-
-```sh
-git clone -b monorep-with-tailwind --single-branch https://github.com/Krish-Das/nextkit.git .
-```
-
-### or Clone in a pre-existing repository (detached HEAD):
-
-1. Fetch the remote branch:
-   ```sh
-   git fetch https://github.com/Krish-Das/nextkit.git monorep-with-tailwind
-   ```
-2. Create and checkout a new branch:
-   ```sh
-   git checkout -b monorep-with-tailwind FETCH_HEAD
-   ```
-
-## Running locally
+To run this site locally:
 
 ```sh
 bunx turbo dev
 ```
+
+This will start the development server available at http://localhost:3000
+
+### Building for Production
+
+```sh
+bunx turbo build
+```
+
+### Code Quality Commands
+
+Maintaining code quality is important to me. Here are the commands I use:
+
+- **Check for issues**: `bun turbo check`
+- **Format code**: `bun turbo fix`
+- **Type checking**: `bun turbo check-types`
+- **Clean build artifacts**: `bun turbo clean`
+- **Diagnose setup**: `bunx ultracite@latest doctor`
+
+## Project Structure
+
+The repository is organized as a monorepo with the following workspace structure:
+
+- `apps/web`: Main Next.js application
+- `packages/backend`: Backend functionality with Convex
+- `packages/ui`: Shared UI components
+- `packages/utils`: Utility functions
+- `tooling/tailwind-config`: Shared Tailwind configuration
+- `tooling/typescript-config`: Shared TypeScript configuration
+
+This structure allows for code sharing and consistency across applications while maintaining clear boundaries between different concerns.

@@ -1,0 +1,44 @@
+{
+  "name": "web",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --port 3000",
+    "build": "next build",
+    "start": "next start",
+    "check-types": "next typegen && tsc --noEmit",
+    "clean:dev": "bunx rimraf .next && next dev --port 3000"
+  },
+  "dependencies": {
+    "@radix-ui/react-slot": "^1.2.4",
+    "@repo/backend": "workspace:*",
+    "@repo/ui": "*",
+    "@repo/utils": "workspace:*",
+    "@tanstack/react-form": "^1.26.0",
+    "@types/mdx": "^2.0.13",
+    "convex": "^1.29.3",
+    "date-fns": "^4.1.0",
+    "fumadocs-core": "^16.1.0",
+    "fumadocs-mdx": "^13.0.8",
+    "fumadocs-ui": "^16.1.0",
+    "next": "^16.0.5",
+    "next-themes": "^0.4.6",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "zod": "^4.1.13"
+  },
+  "devDependencies": {
+    "@repo/tailwind-config": "*",
+    "@repo/typescript-config": "*",
+    "@tailwindcss/postcss": "^4.1.17",
+    "@types/node": "^22.19.1",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "autoprefixer": "^10.4.22",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.17",
+    "typescript": "5.9.2",
+    "babel-plugin-react-compiler": "^1.0.0"
+  }
+}
