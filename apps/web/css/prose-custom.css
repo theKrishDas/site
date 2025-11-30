@@ -5,7 +5,7 @@
   }
 
   h2 {
-    @apply text-base font-semibold text-[oklch(0.3_0_0)] dark:text-white decoration-[1.5px];
+    @apply text-[1.025rem] leading-normal font-semibold text-[oklch(0.3_0_0)] dark:text-white decoration-[1.5px];
     @apply mb-6 mt-12 md:mt-14;
     scroll-margin-top: 2rem;
   }
