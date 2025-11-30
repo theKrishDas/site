@@ -18,9 +18,7 @@ export function Newsletter() {
     <>
       <Heading>Newsletter</Heading>
       <section className="prose">
-        <p>
-          Exclusive, newsletter-only content once a month. No spam, no nonsense.
-        </p>
+        <p>Get exclusive articles and insights, once a month. No spam, ever.</p>
 
         {showGreetings ? (
           <Greeting />

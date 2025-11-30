@@ -16,7 +16,7 @@ export default function About() {
 
       {/* interactive social links */}
       <p className="[&>.socialicon]:mx-0.5">
-        Feel free to check out my work on{" "}
+        You can check out my work on{" "}
         <SocialIcon platform="twitter" url="https://x.com/theupsher" />, view my
         code on{" "}
         <SocialIcon platform="github" url="https://github.com/krish-das" />, or
