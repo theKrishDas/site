@@ -1,3 +1,6 @@
+import { createHash } from "node:crypto"
+import fs from "node:fs"
+import path from "node:path"
 import { notFound } from "next/navigation"
 import { ImageResponse } from "next/og"
 import { getPageImage, source } from "@/lib/source"
@@ -12,6 +15,33 @@ export async function GET(
   const page = source.getPage(slug.slice(0, -1))
   if (!page) notFound()
 
+  // Generate hash from page title
+  const hash = createHash("md5").update(page.path).digest("hex")
+  const imagePath = path.join(process.cwd(), "public", "og", `${hash}.png`)
+
+  try {
+    if (fs.existsSync(imagePath)) {
+      const imageBuffer = fs.readFileSync(imagePath)
+
+      console.info(
+        `[OG] Served static image for "${page.data.title}" (${page.path})`
+      )
+      return new Response(imageBuffer, {
+        headers: { "Content-Type": "image/png" },
+      })
+    }
+
+    console.info(
+      `[OG] Static image not found for "${page.data.title}" (${page.path}), generating dynamic image`
+    )
+  } catch (error) {
+    console.error(
+      `[OG] Error reading image for "${page.data.title}" (${page.path}):`,
+      error
+    )
+  }
+
+  // Fallback to ImageResponse
   return new ImageResponse(
     <div
       style={{
