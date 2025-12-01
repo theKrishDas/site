@@ -6,7 +6,7 @@ import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { Container } from "@/components/container"
 import { Spacer } from "@/components/spacer"
-import { source } from "@/lib/source"
+import { getPageImage, source } from "@/lib/source"
 import { getMDXComponents } from "@/mdx-components"
 
 export default async function Page(props: PageProps<"/w/[[...slug]]">) {
@@ -65,5 +65,8 @@ export async function generateMetadata(
   return {
     title: page.data.title,
     description: page.data.description,
+    openGraph: {
+      images: getPageImage(page).url,
+    },
   }
 }
