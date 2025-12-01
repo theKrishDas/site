@@ -50,8 +50,10 @@ export function NewsletterForm(props: {
               {/* input wraper: contains input and submit button */}
               <div
                 className={cn(
-                  "flex h-13 w-full items-center gap-2 rounded border border-gray-6 pr-1 md:h-10.5",
-                  isValid ? "" : "border-ios-red/80 ring-3 ring-ios-red/30"
+                  "flex h-13 w-full items-center gap-2 pr-1 md:h-10.5",
+                  "border border-gray-6/50 bg-white shadow-[inset_0_1px,inset_0_0_0_1px] shadow-black/2.5 dark:border-transparent dark:bg-fill-quaternary dark:shadow-white/2.5",
+                  !isValid &&
+                    "border-ios-red/80 shadow-none ring-3 ring-ios-red/30 dark:border-ios-red/80"
                 )}
                 style={
                   {
