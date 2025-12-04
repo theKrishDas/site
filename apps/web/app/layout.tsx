@@ -3,13 +3,7 @@ import "./globals.css"
 import { Footer } from "@/components/footer"
 import { Spacer } from "@/components/spacer"
 import { Header } from "@/components/upsher-header"
-import {
-  instrumentSerif,
-  inter,
-  jetbrainsMono,
-  sfPro,
-  sourceSerif,
-} from "@/lib/fonts"
+import { instrumentSerif, inter, jetbrainsMono, sourceSerif } from "@/lib/fonts"
 import { siteMetadata } from "@/lib/metadata"
 import Provider from "./provider"
 
@@ -22,7 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html
-      className={`${inter.variable} ${sfPro.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable} ${sourceSerif.variable}`}
+      className={`${inter.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable} ${sourceSerif.variable}`}
       lang="en"
       suppressHydrationWarning
     >

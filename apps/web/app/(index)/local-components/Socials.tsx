@@ -49,7 +49,7 @@ export const SocialIcon = ({
         {icon}
       </span>
       <Link
-        className="font-medium font-sfpro text-label-primary tracking-[-0.0125em] md:ml-[calc(var(--icon-size)+0.25rem)]"
+        className="font-medium text-label-primary md:ml-[calc(var(--icon-size)+0.25rem)]"
         href={url}
         target="_blank"
       >

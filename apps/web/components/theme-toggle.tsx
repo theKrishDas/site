@@ -1,14 +1,17 @@
 "use client"
 import { useTheme } from "next-themes"
 import { useEffect, useState } from "react"
+import { IoIosSunny as SunIcon } from "react-icons/io"
+import { MdOutlineDesktopWindows as SystemIcon } from "react-icons/md"
+import { WiMoonAltWaxingCrescent4 as MoonIcon } from "react-icons/wi"
 
 export const themes = ["light", "dark", "system"] as const
 export type Theme = (typeof themes)[number]
 
-const themeIcons: Record<Theme, string> = {
-  light: "􀆮",
-  dark: "􀡍", // "􀆺",
-  system: "􀙗",
+const themeIcons: Record<Theme, React.ReactNode> = {
+  light: <SunIcon size={16} />,
+  dark: <MoonIcon size={17} />,
+  system: <SystemIcon />,
 }
 
 export function ThemeToggle() {
@@ -22,22 +25,19 @@ export function ThemeToggle() {
   if (!mounted) return
   const icon = themeIcons[theme as Theme]
   const Icon = () => (
-    <span
-      aria-hidden
-      className="pointer-events-none mr-1 select-none font-sfpro"
-    >
+    <span aria-hidden className="pointer-events-none select-none">
       {icon}
     </span>
   )
 
   return (
     <button
-      className="group/theme-toggle-button relative isolate"
+      className="group/theme-toggle-button relative isolate inline-flex select-none items-center gap-1 text-label-tertiary transition-colors hover:text-label-primary"
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
       type="button"
     >
-      <span className="select-none font-jetbrains-mono font-normal text-label-tertiary text-sm uppercase tracking-tight transition-colors group-hover/theme-toggle-button:text-label-primary">
-        <Icon />
+      <Icon />
+      <span className="font-jetbrains-mono font-normal text-sm uppercase tracking-tight">
         {theme}
       </span>
       <span
