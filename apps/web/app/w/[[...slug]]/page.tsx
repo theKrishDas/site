@@ -26,7 +26,7 @@ export default async function Page(props: PageProps<"/w/[[...slug]]">) {
             // "font-bold font-inter text-3xl",
             // "mb-3 font-medium text-3xl text-charcoal-100 sm:mb-4 sm:text-4xl lg:text-5xl"
             // "text-[3.25rem] leading-none md:text-[5rem]",
-            "text-balance font-semibold font-sfpro text-[1.5rem] tracking-[-0.0125em]"
+            "text-balance font-semibold text-[1.5rem] capitalize tracking-[-0.0125em]"
           )}
         >
           {page.data.title}

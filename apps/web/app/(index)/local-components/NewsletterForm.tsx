@@ -3,12 +3,9 @@ import { cn, wait } from "@repo/utils"
 import { useForm } from "@tanstack/react-form"
 import { useMutation } from "convex/react"
 import { useState } from "react"
-import z from "zod"
 import { Spacer } from "@/components/spacer"
 import { Spinner } from "@/components/spinner"
-
-// TODO: put it somewhere relevant!
-const schema = z.object({ email: z.email() })
+import { newsletterSubscriptionSchema } from "@/lib/schemas"
 
 export function NewsletterForm(props: {
   onSubscriptionComplete?: (email: string) => void
@@ -21,7 +18,7 @@ export function NewsletterForm(props: {
   const [isSubscribing, setSubscribing] = useState(false)
   const form = useForm({
     defaultValues: { email: "" },
-    validators: { onBlur: schema },
+    validators: { onBlur: newsletterSubscriptionSchema },
     onSubmit: async ({ value: { email } }) => {
       setSubscribing(true)
       await wait(700) // add artificial delay?
@@ -79,7 +76,7 @@ export function NewsletterForm(props: {
 
                 {/* submit button */}
                 <button
-                  className="relative h-10 cursor-default select-none rounded-lg bg-ios-blue px-3 font-sfpro text-[0.9rem] text-white md:h-8 md:px-2.5"
+                  className="relative h-10 cursor-default select-none rounded-lg bg-ios-blue px-3 text-[0.9rem] text-white md:h-8 md:px-2.5"
                   style={
                     {
                       borderRadius: "12px",
@@ -105,7 +102,7 @@ export function NewsletterForm(props: {
               {form.state.isSubmitted && form.state.errors?.length && (
                 <>
                   <Spacer className="h-2" />
-                  <span className="-tracking-[0.01em] font-sfpro text-ios-red">
+                  <span className="text-ios-red">
                     Something went wrong please try again later!
                   </span>
                 </>

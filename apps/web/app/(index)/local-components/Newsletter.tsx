@@ -41,9 +41,7 @@ function Greeting() {
         } as React.CSSProperties
       }
     >
-      <span className="-tracking-[0.01em] font-sfpro">
-        Thanks for subscribing.
-      </span>
+      <span>Thanks for subscribing.</span>
     </div>
   )
 }
