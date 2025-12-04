@@ -3,12 +3,9 @@ import { cn, wait } from "@repo/utils"
 import { useForm } from "@tanstack/react-form"
 import { useMutation } from "convex/react"
 import { useState } from "react"
-import z from "zod"
 import { Spacer } from "@/components/spacer"
 import { Spinner } from "@/components/spinner"
-
-// TODO: put it somewhere relevant!
-const schema = z.object({ email: z.email() })
+import { newsletterSubscriptionSchema } from "@/lib/schemas"
 
 export function NewsletterForm(props: {
   onSubscriptionComplete?: (email: string) => void
@@ -21,7 +18,7 @@ export function NewsletterForm(props: {
   const [isSubscribing, setSubscribing] = useState(false)
   const form = useForm({
     defaultValues: { email: "" },
-    validators: { onBlur: schema },
+    validators: { onBlur: newsletterSubscriptionSchema },
     onSubmit: async ({ value: { email } }) => {
       setSubscribing(true)
       await wait(700) // add artificial delay?
