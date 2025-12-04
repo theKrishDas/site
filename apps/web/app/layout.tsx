@@ -1,5 +1,8 @@
 import "@repo/ui/styles.css"
 import "./globals.css"
+import { Footer } from "@/components/footer"
+import { Spacer } from "@/components/spacer"
+import { Header } from "@/components/upsher-header"
 import {
   instrumentSerif,
   inter,
@@ -24,7 +27,13 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="flex min-h-screen flex-col">
-        <Provider>{children}</Provider>
+        <Provider>
+          <Header />
+          {children}
+
+          <Spacer className="flex-1" />
+          <Footer />
+        </Provider>
       </body>
     </html>
   )
