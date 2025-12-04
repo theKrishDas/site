@@ -1,4 +1,3 @@
-import { IoMapOutline as MapIcon } from "react-icons/io5"
 import { Container } from "./container"
 import { ThemeToggle } from "./theme-toggle"
 
@@ -18,10 +17,7 @@ export function Footer() {
             {footerInfo.copyright}
           </span>
           <span className="separator">/</span>
-          <span className="inline-flex items-center gap-1.5">
-            <MapIcon />
-            {footerInfo.location}
-          </span>
+          <span>{footerInfo.location}</span>
         </div>
 
         <ThemeToggle />
