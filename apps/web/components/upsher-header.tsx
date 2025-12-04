@@ -9,7 +9,7 @@ export function Header() {
         <div className="relative w-fit">
           <Link
             className={cn(
-              "cursor-default font-semibold font-sfpro text-[oklch(0.375_0_0)] tracking-[-0.01em] after:content-['.'] dark:text-[oklch(0.875_0_0)]",
+              "cursor-default font-semibold text-[oklch(0.375_0_0)] tracking-[-0.01em] after:content-['.'] dark:text-[oklch(0.875_0_0)]",
               "decoration-2 decoration-ios-blue hover:underline"
             )}
             href="/"
