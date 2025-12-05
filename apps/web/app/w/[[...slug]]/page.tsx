@@ -1,7 +1,6 @@
 import { cn } from "@repo/utils"
 import { format } from "date-fns"
 import { createRelativeLink } from "fumadocs-ui/mdx"
-import { DocsTitle } from "fumadocs-ui/page"
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { Container } from "@/components/container"
@@ -19,7 +18,7 @@ export default async function Page(props: PageProps<"/w/[[...slug]]">) {
   return (
     <Container asChild>
       <article>
-        <DocsTitle
+        <h1
           className={cn(
             // "-tracking-[0.005em] mb-4.5 text-balance font-instrument-serif font-normal text-[3.25rem] leading-none md:text-[5.5rem]",
             // "text-[3rem] leading-none md:text-[5rem]",
@@ -30,7 +29,7 @@ export default async function Page(props: PageProps<"/w/[[...slug]]">) {
           )}
         >
           {page.data.title}
-        </DocsTitle>
+        </h1>
 
         <div className="mt-5.5 flex items-center gap-5 font-jetbrains-mono font-normal text-label-tertiary text-sm uppercase tracking-tight">
           <p>{format(page.data.date, "MMM dd, yyyy")}</p>
