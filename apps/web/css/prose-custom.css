@@ -41,6 +41,10 @@
     corner-shape: squircle;
   }
 
+  figcaption {
+    @apply text-center text-gray-2 text-sm;
+  }
+
   /**
    * ! EXPERIMENTAL - Shiki code container styles
    *
