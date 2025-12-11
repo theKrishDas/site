@@ -1,3 +1,8 @@
+@utility corner-squircle {
+  /* biome-ignore lint/correctness/noUnknownProperty: it does exisit */
+  corner-shape: squircle;
+}
+
 @utility full-bleed {
   @apply -translate-x-1/2 left-1/2 w-screen;
   /* optionally add a max-width */
