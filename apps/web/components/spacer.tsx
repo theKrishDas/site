@@ -12,6 +12,10 @@ export function Spacer({
 }) {
   const Comp = asChild ? Slot : as
   return (
-    <Comp aria-hidden className={cn("__spacer h-3", className)} {...rest} />
+    <Comp
+      aria-hidden
+      className={cn("__spacer inline-block h-3", className)}
+      {...rest}
+    />
   )
 }
