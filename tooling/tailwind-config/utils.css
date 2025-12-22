@@ -13,3 +13,9 @@
 @utility flush-width {
   @apply w-screen rounded-none ml-[calc(50%-50vw)] mr-[calc(50%-50vw)];
 }
+
+@utility tap-highlight-none {
+  /* Disable tap highlight */
+  -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); /* Some Android devices */
+}
