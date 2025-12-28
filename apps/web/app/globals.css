@@ -14,7 +14,12 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  /**
+   * Disable smooth scrolling for Next.js route transitions
+   * Prevents delayed page transitions caused by scroll animations
+   * when navigating between routes with Next.js Link components
+   */
+  scroll-behavior: auto;
 }
 
 body {
