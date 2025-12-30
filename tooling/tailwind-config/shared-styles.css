@@ -42,3 +42,8 @@
   --color-separator-opaque: var(--separator-opaque);
   --color-separator-non-opaque: var(--separator-non-opaque);
 }
+
+@theme {
+  --shadow-elevation-high: 0 20px 76px 0 rgba(0, 0, 0, 0.2);
+  --shadow-elevation-medium: 0 10px 60px 0 rgba(0, 0, 0, 0.1);
+}
