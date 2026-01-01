@@ -14,8 +14,9 @@ Components that are the part of this app. No need to move.
 
 Components that must be moved to `@repo/ui`:
 
-- [ ] `Spacer` (depends on `@radix-ui/react-slot`)
 - [ ] `Kbd` (no dependencies)
+- [ ] `Spacer` (depends on `@radix-ui/react-slot`)
+- [ ] `Bleed` (depends on `@radix-ui/react-slot`)
 
 ## Overall dependencies
 
