@@ -16,12 +16,16 @@
     @apply scroll-mt-8;
   }
 
-  p {
+  p:not(.not-prose) {
     @apply mb-6.5;
   }
 
-  em {
-    @apply font-source-serif text-lg italic;
+  strong:not(.not-prose) {
+    @apply font-semibold text-label-primary font-inter;
+  }
+
+  em:not(.not-prose) {
+    @apply font-source-serif text-lg italic text-label-primary;
   }
 
   ul > li:not(.not-prose, .not-prose *) {
