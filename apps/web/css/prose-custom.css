@@ -1,5 +1,6 @@
 @utility prose {
   --tw-prose-body: oklch(0.375 0 0);
+
   @variant dark {
     --tw-prose-body: oklch(0.875 0 0);
   }
@@ -16,7 +17,7 @@
     @apply scroll-mt-8;
   }
 
-  p:not(.not-prose) {
+  p {
     @apply mb-6.5;
   }
 
@@ -30,6 +31,7 @@
 
   ul > li:not(.not-prose, .not-prose *) {
     @apply list-none ps-1.25;
+
     &::marker {
       @apply content-['-_'] text-[1.1em] leading-none font-medium text-gray-2;
     }
@@ -37,6 +39,7 @@
 
   blockquote {
     @apply text-2xl leading-[1.33] md:text-3xl font-source-serif font-normal not-italic;
+
     em {
       @apply text-[1.025em];
     }
