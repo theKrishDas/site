@@ -6,8 +6,8 @@
   }
 
   h2 {
-    @apply text-[1.025rem] leading-normal font-semibold text-[oklch(0.3_0_0)] dark:text-white decoration-[1.5px];
-    @apply mb-6 mt-12 md:mt-14;
+    @apply text-[1.1rem] -tracking-[0.005em] leading-normal font-semibold text-[oklch(0.3_0_0)] dark:text-white decoration-[1.5px];
+    @apply mb-6 mt-14 md:mt-14;
     @apply scroll-mt-8;
   }
 
