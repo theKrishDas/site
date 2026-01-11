@@ -16,6 +16,16 @@ export const docs = defineDocs({
     postprocess: {
       includeProcessedMarkdown: true,
     },
+    files: [
+      "**/*.mdx", // only include `.mdx` files
+      "!**/_*", // Exclude files starting with _
+      "!**/_*/**", // Exclude directories starting with _
+      "!**/.*", // Exclude hidden files (starting with .)
+      "!**/.*/***", // Exclude hidden directories
+      "!**/*.draft.mdx", // Exclude draft files
+      "!**/*.test.mdx", // Exclude test files
+      "!**/*.ignore.mdx", // Exclude files with .ignore
+    ],
   },
   meta: {
     schema: metaSchema,
