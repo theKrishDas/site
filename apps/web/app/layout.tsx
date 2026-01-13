@@ -1,4 +1,3 @@
-import "@repo/ui/styles.css"
 import "./globals.css"
 import { instrumentSerif, inter, jetbrainsMono, sourceSerif } from "@/lib/fonts"
 import { siteMetadata } from "@/lib/metadata"
