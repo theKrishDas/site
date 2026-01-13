@@ -5,6 +5,8 @@
   "private": true,
   "exports": {
     ".": "./shared-styles.css",
+    "./colors": "./colors.css",
+    "./theme": "./theme.css",
     "./utils": "./utils.css",
     "./postcss": "./postcss.config.js"
   },
@@ -13,3 +15,4 @@
     "tailwindcss": "^4.1.17"
   }
 }
+
