@@ -3,7 +3,7 @@ import { ScrollArea as BUIScrollArea } from "@base-ui/react/scroll-area"
 function Viewport({ className, ...props }: BUIScrollArea.Viewport.Props) {
   return (
     <BUIScrollArea.Viewport
-      className={`corner-squircle ui:-outline-offset-1 ui:h-full ui:overscroll-contain ui:rounded-2xl focus-visible:outline-ios-blue ui:focus-visible:outline-2 ${className}`}
+      className={`ui:corner-squircle ui:-outline-offset-1 ui:h-full ui:overscroll-contain ui:rounded-2xl ui:focus-visible:outline-2 ui:focus-visible:outline-ios-blue ${className}`}
       {...props}
     />
   )
