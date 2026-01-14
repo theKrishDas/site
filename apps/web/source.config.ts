@@ -5,6 +5,7 @@ import {
   metaSchema,
 } from "fumadocs-mdx/config"
 import { z } from "zod"
+import { shikiOptions } from "./lib/shiki"
 
 export const docs = defineDocs({
   dir: "content/writings",
@@ -36,11 +37,7 @@ export default defineConfig({
   mdxOptions: {
     rehypeCodeOptions: {
       inline: "tailing-curly-colon",
-      themes: {
-        // visit https://shiki.style/themes
-        dark: "github-dark",
-        light: "github-light",
-      },
+      ...shikiOptions,
     },
   },
 })
