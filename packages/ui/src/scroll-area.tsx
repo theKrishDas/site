@@ -1,5 +1,14 @@
 import { ScrollArea as BUIScrollArea } from "@base-ui/react/scroll-area"
 
+function Root({ className, ...props }: BUIScrollArea.Root.Props) {
+  return (
+    <BUIScrollArea.Root
+      className={`--ui-scroll-area-root max-w-full ${className}`}
+      {...props}
+    />
+  )
+}
+
 function Viewport({ className, ...props }: BUIScrollArea.Viewport.Props) {
   return (
     <BUIScrollArea.Viewport
@@ -21,7 +30,7 @@ function Scrollbar({ className, ...props }: BUIScrollArea.Scrollbar.Props) {
 }
 
 export const ScrollArea = {
-  Root: BUIScrollArea.Root,
+  Root,
   Scrollbar,
   Viewport,
   Content: BUIScrollArea.Content,
