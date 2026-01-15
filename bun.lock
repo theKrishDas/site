@@ -13,7 +13,6 @@
       "name": "web",
       "version": "1.0.0",
       "dependencies": {
-        "@base-ui/react": "^1.0.0",
         "@radix-ui/react-slot": "^1.2.4",
         "@repo/backend": "workspace:*",
         "@repo/ui": "*",
@@ -62,6 +61,7 @@
       "version": "0.0.0",
       "dependencies": {
         "@base-ui/react": "^1.0.0",
+        "@radix-ui/react-slot": "^1.2.4",
       },
       "devDependencies": {
         "@repo/tailwind-config": "*",
