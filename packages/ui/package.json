@@ -33,6 +33,7 @@
   "dependencies": {
     "@base-ui/react": "^1.0.0",
     "@radix-ui/react-slot": "^1.2.4",
-    "react-aria-components": "^1.14.0"
+    "react-aria-components": "^1.14.0",
+    "tailwind-variants": "^3.2.2"
   }
 }
