@@ -7,3 +7,8 @@
   /* biome-ignore lint/correctness/noUnknownProperty: it does exisit */
   corner-shape: squircle;
 }
+@utility tap-highlight-none {
+  /* Disable tap highlight */
+  -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); /* Some Android devices */
+}
