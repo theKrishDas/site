@@ -5,6 +5,7 @@ import {
   metaSchema,
 } from "fumadocs-mdx/config"
 import { z } from "zod"
+import { shikiOptions } from "./lib/shiki"
 
 export const docs = defineDocs({
   dir: "content/writings",
@@ -16,6 +17,16 @@ export const docs = defineDocs({
     postprocess: {
       includeProcessedMarkdown: true,
     },
+    files: [
+      "**/*.mdx", // only include `.mdx` files
+      "!**/_*", // Exclude files starting with _
+      "!**/_*/**", // Exclude directories starting with _
+      "!**/.*", // Exclude hidden files (starting with .)
+      "!**/.*/***", // Exclude hidden directories
+      "!**/*.draft.mdx", // Exclude draft files
+      "!**/*.test.mdx", // Exclude test files
+      "!**/*.ignore.mdx", // Exclude files with .ignore
+    ],
   },
   meta: {
     schema: metaSchema,
@@ -26,11 +37,7 @@ export default defineConfig({
   mdxOptions: {
     rehypeCodeOptions: {
       inline: "tailing-curly-colon",
-      themes: {
-        // visit https://shiki.style/themes
-        dark: "github-dark",
-        light: "github-light",
-      },
+      ...shikiOptions,
     },
   },
 })

@@ -41,7 +41,12 @@ export default async function Page(props: PageProps<"/w/[[...slug]]">) {
         <div className="prose flex-1">
           <MDX
             components={getMDXComponents({
-              a: createRelativeLink(source, page),
+              // TODO: Remove this type assertion by updating fumadocs
+              //
+              // Type assertion needed due to fumadocs' strict generic constraints
+              // with extended schemas. Runtime behavior is safe as resolveHref
+              // signature matches expectations.
+              a: createRelativeLink(source as never, page),
             })}
           />
         </div>

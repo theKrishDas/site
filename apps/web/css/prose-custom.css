@@ -1,33 +1,47 @@
 @utility prose {
   --tw-prose-body: oklch(0.375 0 0);
+
   @variant dark {
     --tw-prose-body: oklch(0.875 0 0);
   }
 
   h2 {
-    @apply text-[1.025rem] leading-normal font-semibold text-[oklch(0.3_0_0)] dark:text-white decoration-[1.5px];
-    @apply mb-6 mt-12 md:mt-14;
-    scroll-margin-top: 2rem;
+    @apply text-[1.1rem] -tracking-[0.005em] leading-normal font-semibold text-[oklch(0.3_0_0)] dark:text-white decoration-[1.5px];
+    @apply mb-6 mt-14 md:mt-14;
+    @apply scroll-mt-8;
   }
 
   h3 {
     @apply text-[0.9rem] font-semibold tracking-[0.01em] text-[oklch(0.3_0_0)] dark:text-white decoration-[1.5px];
     @apply mb-6 mt-12 md:mt-14;
-    scroll-margin-top: 2rem;
+    @apply scroll-mt-8;
   }
 
   p {
     @apply mb-6.5;
   }
 
-  em {
-    @apply font-source-serif text-lg italic;
+  strong:not(.not-prose) {
+    @apply font-semibold text-label-primary font-inter;
+  }
+
+  em:not(.not-prose) {
+    @apply font-source-serif text-lg italic text-label-primary;
+  }
+
+  ul > li:not(.not-prose, .not-prose *) {
+    @apply list-none ps-1.25;
+
+    &::marker {
+      @apply content-['-_'] text-[1.1em] leading-none font-medium text-gray-2;
+    }
   }
 
   blockquote {
     @apply text-2xl leading-[1.33] md:text-3xl font-source-serif font-normal not-italic;
+
     em {
-      font-size: 1.025em;
+      @apply text-[1.025em];
     }
   }
 
@@ -35,14 +49,18 @@
     @apply decoration-separator-opaque;
   }
 
+  code:not(.not-prose, .not-prose *) {
+    @apply rounded-md px-1 py-px;
+  }
+
   img {
-    border-radius: 1.375rem;
+    @apply rounded-[1.375rem];
     /* biome-ignore lint/correctness/noUnknownProperty: it does exisit */
     corner-shape: squircle;
   }
 
   figcaption {
-    @apply text-center text-gray-2 text-sm;
+    @apply text-center text-gray-2 text-sm text-balance;
   }
 
   /**
@@ -56,6 +74,7 @@
   div[data-orientation="horizontal"]:has(figure.shiki) {
     @apply max-sm:flush-width;
   }
+
   figure.shiki {
     /* depends on @repo/tailwind-config/utils */
     @apply max-sm:flush-width;
@@ -68,15 +87,16 @@
   figure.shiki,
   [data-rehype-pretty-code-fragment],
   [data-rehype-pretty-code-figure] {
-    box-shadow: none;
+    @apply shadow-none;
   }
 }
 
 .shiki:not(.not-fumadocs-codeblock *) {
-  box-shadow: none;
+  @apply shadow-none;
 }
+
 .dark .shiki:not(.not-fumadocs-codeblock *) {
-  box-shadow: none;
+  @apply shadow-none;
 }
 
 /* Additional overrides for any container elements that might have shadows */
@@ -84,5 +104,5 @@
 [data-rehype-pretty-code-figure],
 .fumadocs-codeblock,
 .fumadocs-codeblock-container {
-  box-shadow: none;
+  @apply shadow-none;
 }

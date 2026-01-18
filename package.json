@@ -4,8 +4,8 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
-    "check": "npx ultracite@latest check",
-    "fix": "npx ultracite@latest fix",
+    "check": "ultracite check",
+    "fix": "ultracite fix",
     "check-types": "turbo run check-types",
     "clean": "turbo run clean && rm -rf node_modules"
   },
