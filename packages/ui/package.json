@@ -6,6 +6,7 @@
     "@repo/typescript-config": "*",
     "@tailwindcss/cli": "^4.1.17",
     "@types/react": "^19.2.7",
+    "shiki": "^3.21.0",
     "tailwindcss": "^4.1.17",
     "typescript": "5.9.2"
   },
@@ -14,7 +15,8 @@
   },
   "exports": {
     "./styles.css": "./dist/index.css",
-    "./*": "./dist/*.js"
+    "./*": "./dist/*.js",
+    "./react-code-block": "./dist/react-code-block/index.js"
   },
   "files": [
     "dist"
