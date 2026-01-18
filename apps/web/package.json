@@ -11,6 +11,7 @@
     "clean:dev": "bunx rimraf .next && next dev --port 3000"
   },
   "dependencies": {
+    "@base-ui/react": "^1.1.0",
     "@radix-ui/react-slot": "^1.2.4",
     "@repo/backend": "workspace:*",
     "@repo/ui": "*",
@@ -27,6 +28,7 @@
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "react-icons": "^5.5.0",
+    "shiki": "^3.21.0",
     "zod": "^4.1.13"
   },
   "devDependencies": {
