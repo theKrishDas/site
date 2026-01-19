@@ -13,6 +13,9 @@
     "clean:dev": {
       "dependsOn": ["^clean:dev"]
     },
+    "prepare": {
+      "dependsOn": ["^prepare"]
+    },
     "dev": {
       "cache": false,
       "persistent": true
