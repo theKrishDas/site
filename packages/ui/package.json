@@ -27,7 +27,8 @@
     "build:components": "tsc",
     "check-types": "tsc --noEmit",
     "dev:styles": "tailwindcss -i ./src/styles.css -o ./dist/index.css --watch",
-    "dev:components": "tsc --watch"
+    "dev:components": "tsc --watch",
+    "prepare": "bun run build:styles && bun run build:components"
   },
   "sideEffects": [
     "**/*.css"

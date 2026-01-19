@@ -52,10 +52,11 @@ This project uses modern tooling for a great developer experience:
 
 ## Getting Started
 
-To run this site locally:
+To run this site locally, make sure you have the `.env`s setup then run:
 
 ```sh
-bunx turbo dev
+bun turbo prepare
+bun turbo dev
 ```
 
 This will start the development server available at http://localhost:3000
@@ -63,7 +64,7 @@ This will start the development server available at http://localhost:3000
 ### Building for Production
 
 ```sh
-bunx turbo build
+bun turbo build
 ```
 
 ### Code Quality Commands
