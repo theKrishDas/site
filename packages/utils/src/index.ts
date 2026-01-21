@@ -1,6 +1,9 @@
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
 
+// biome-ignore lint/performance/noBarrelFile: Re-export from "tailwind-variants"
+export { cnMerge, tv } from "tailwind-variants"
+
 /**
  * Combines class names using clsx and merges Tailwind CSS classes using tailwind-merge
  * @param inputs - Class values to combine

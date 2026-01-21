@@ -1,5 +1,6 @@
 "use client"
 
+import { tv } from "@repo/utils"
 import {
   ColorSwatchPicker as AriaColorSwatchPicker,
   ColorSwatchPickerItem as AriaColorSwatchPickerItem,
@@ -7,7 +8,6 @@ import {
   type ColorSwatchPickerItemProps as RacColorSwatchPickerItemProps,
   type ColorSwatchPickerProps as RacColorSwatchPickerProps,
 } from "react-aria-components"
-import { tv } from "tailwind-variants"
 import { ColorSwatch } from "./color-swatch"
 
 const pickerStyles = tv({
