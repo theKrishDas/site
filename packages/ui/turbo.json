@@ -10,7 +10,7 @@
     "build:components": {
       "outputs": ["dist/**"]
     },
-    "prepare": {
+    "build:packages": {
       "outputs": ["dist/**"]
     },
     "dev": {

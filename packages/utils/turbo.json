@@ -7,7 +7,7 @@
     "check-types": {
       "dependsOn": ["^check-types"]
     },
-    "prepare": {
+    "build:packages": {
       "outputs": ["dist/**"]
     }
   }
