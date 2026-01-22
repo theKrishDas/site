@@ -13,8 +13,8 @@
     "clean:dev": {
       "dependsOn": ["^clean:dev"]
     },
-    "prepare": {
-      "dependsOn": ["^prepare"]
+    "build:packages": {
+      "dependsOn": ["^build:packages"]
     },
     "dev": {
       "cache": false,

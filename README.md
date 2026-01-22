@@ -55,7 +55,7 @@ This project uses modern tooling for a great developer experience:
 To run this site locally, make sure you have the `.env`s setup then run:
 
 ```sh
-bun turbo prepare
+bun turbo build:packages
 bun turbo dev
 ```
 

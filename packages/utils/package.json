@@ -14,7 +14,7 @@
     "check-types": "tsc --noEmit",
     "dev": "tsc --watch",
     "clean": "rm -rf dist",
-    "prepare": "bun run build"
+    "build:packages": "bun run build"
   },
   "devDependencies": {
     "@repo/tailwind-config": "*",
