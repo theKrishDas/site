@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "@repo/tailwind-config";
 @import "@repo/tailwind-config/utils";
+@import "@repo/ui/styles.css";
 @import "fumadocs-ui/css/neutral.css";
 @import "fumadocs-ui/css/preset.css";
 @import "../css/prose-custom.css";
@@ -34,6 +35,7 @@ body {
   --color-fd-card: var(--background-primary);
   --color-fd-secondary: oklch(99.5% 0 0);
 }
+
 .dark {
   --color-fd-card: hsl(0, 0%, 9.8%);
   --color-fd-secondary: hsl(0, 0%, 12.9%);

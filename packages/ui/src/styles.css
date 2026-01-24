@@ -2,6 +2,7 @@
 @import "tailwindcss" prefix(ui);
 @import "@repo/tailwind-config/colors";
 @import "@repo/tailwind-config/theme";
+@custom-variant dark (&:where(.dark, .dark *));
 
 @utility corner-squircle {
   /* biome-ignore lint/correctness/noUnknownProperty: it does exisit */
