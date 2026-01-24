@@ -3,6 +3,7 @@
   "compilerOptions": {
     "baseUrl": "./src",
     "paths": {
+      "@/*": ["./*"],
       "@repo/utils": ["../utils/src"]
     },
     "outDir": "dist",

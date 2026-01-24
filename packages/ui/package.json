@@ -16,7 +16,8 @@
   "exports": {
     "./styles.css": "./dist/index.css",
     "./*": "./dist/*.js",
-    "./react-code-block": "./dist/react-code-block/index.js"
+    "./react-code-block": "./dist/react-code-block/index.js",
+    "./file-name": "./dist/file-name/index.js"
   },
   "files": [
     "dist"
@@ -36,7 +37,10 @@
   "dependencies": {
     "@base-ui/react": "^1.0.0",
     "@radix-ui/react-slot": "^1.2.4",
+    "@repo/utils": "workspace:*",
+    "motion": "^12.28.1",
     "react-aria-components": "^1.14.0",
-    "@repo/utils": "workspace:*"
+    "react-icons": "^5.5.0",
+    "react-use-clipboard": "^1.0.9"
   }
 }
