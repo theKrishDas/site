@@ -71,6 +71,20 @@
     @apply select-none corner-squircle mx-0.5 inline-grid h-4 align-text-top place-content-center rounded-md bg-fill-primary px-0.75 pt-px text-[0.7rem] text-label-secondary no-underline;
   }
 
+  /* Styles for footnote lists and elements */
+  ol:has(li[id^="user-content-fn-"]) {
+    @apply pl-4;
+  }
+  li[id^="user-content-fn-"] p {
+    @apply text-[0.85rem] leading-normal text-label-secondary;
+    a {
+      @apply text-inherit;
+    }
+  }
+  li[id^="user-content-fn-"]::marker {
+    @apply text-[0.85rem];
+  }
+
   /**
    * ! EXPERIMENTAL - Shiki code container styles
    *
