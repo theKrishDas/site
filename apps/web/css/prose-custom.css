@@ -65,7 +65,7 @@
 
   /* Styles footnote reference numbers and backlinks with a small, rounded badge. */
   [data-footnote-ref="true"]:not(.not-prose, .not-prose *) {
-    @apply select-none corner-squircle mx-0.5 inline-grid h-3.75 place-content-center rounded-md bg-fill-primary px-0.75 pt-px font-jetbrains-mono text-[0.7rem] text-label-secondary leading-none no-underline } blockquote { @apply text-2xl leading-[1.33] md:text-3xl font-source-serif font-normal not-italic;
+    @apply select-none corner-squircle mx-0.5 inline-grid h-3.75 place-content-center rounded-md bg-fill-primary px-0.75 pt-px font-jetbrains-mono text-[0.7rem] text-label-secondary leading-none no-underline;
   }
   [data-footnote-backref]:not(.not-prose, .not-prose *) {
     @apply select-none corner-squircle mx-0.5 inline-grid h-4 align-text-top place-content-center rounded-md bg-fill-primary px-0.75 pt-px text-[0.7rem] text-label-secondary no-underline;
