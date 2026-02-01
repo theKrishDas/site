@@ -1,4 +1,4 @@
-import { tv } from "@repo/utils"
+import { tv, type VariantProps } from "tailwind-variants"
 import { focusRing } from "@/styles/focus-ring"
 
 export const buttonVariants = tv({
@@ -40,3 +40,5 @@ export const buttonVariants = tv({
     stateStyles: true,
   },
 })
+
+export type ButtonVariants = VariantProps<typeof buttonVariants>

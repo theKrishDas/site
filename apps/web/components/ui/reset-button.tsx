@@ -1,18 +1,21 @@
 "use client"
 
-import { cn } from "@repo/utils"
 import { useAnimate } from "motion/react"
-import { Button, type PressEvent } from "react-aria-components"
+import {
+  Button,
+  composeRenderProps,
+  type PressEvent,
+} from "react-aria-components"
 import { LuRefreshCcw as RefreshIcon } from "react-icons/lu"
-import { buttonVariants } from "./buttons"
+import { type ButtonVariants, buttonVariants } from "./buttons"
 
 export interface ResetButtonProps
-  extends Omit<React.ComponentProps<typeof Button>, "children"> {
+  extends Omit<React.ComponentProps<typeof Button>, "children">,
+    ButtonVariants {
   label: string
 }
 
 export function ResetButton({
-  className,
   label,
   onPress,
   onPressStart,
@@ -38,11 +41,9 @@ export function ResetButton({
     <Button
       {...rest}
       aria-label={label}
-      className={buttonVariants({
-        size: "icon-sm",
-        variant: "ghost",
-        className: cn(className),
-      })}
+      className={composeRenderProps(rest.className, (className, renderProps) =>
+        buttonVariants({ ...rest, ...renderProps, className })
+      )}
       onPress={handlePress}
       onPressEnd={handlePressEnd}
       onPressStart={handlePressStart}
