@@ -1,13 +1,14 @@
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
 
-// biome-ignore lint/performance/noBarrelFile: Re-export from "tailwind-variants"
-export { cnMerge, tv } from "tailwind-variants"
-
 /**
- * Combines class names using clsx and merges Tailwind CSS classes using tailwind-merge
- * @param inputs - Class values to combine
- * @returns Combined and merged class names
+ * @deprecated
+ * WARNING: This helper is scheduled for removal.
+ *
+ * Do NOT use this function in new code.
+ * Import `cn` directly from `tailwind-variants` instead.
+ *
+ * This wrapper exists only for backward compatibility and will be deleted.
  */
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
