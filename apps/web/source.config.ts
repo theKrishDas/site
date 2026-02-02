@@ -4,6 +4,7 @@ import {
   frontmatterSchema,
   metaSchema,
 } from "fumadocs-mdx/config"
+import { remarkUnravelMdx } from "remark-unravel-mdx"
 import { z } from "zod"
 import { shikiOptions } from "./lib/shiki"
 
@@ -35,6 +36,7 @@ export const docs = defineDocs({
 
 export default defineConfig({
   mdxOptions: {
+    remarkPlugins: [remarkUnravelMdx],
     rehypeCodeOptions: {
       inline: "tailing-curly-colon",
       ...shikiOptions,
