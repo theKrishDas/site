@@ -46,6 +46,7 @@
         "autoprefixer": "^10.4.23",
         "babel-plugin-react-compiler": "^1.0.0",
         "postcss": "^8.5.6",
+        "remark-unravel-mdx": "^1.0.0",
         "tailwindcss": "^4.1.18",
         "typescript": "5.9.2",
       },
@@ -1159,6 +1160,8 @@
     "remark-rehype": ["remark-rehype@11.1.2", "", { "dependencies": { "@types/hast": "^3.0.0", "@types/mdast": "^4.0.0", "mdast-util-to-hast": "^13.0.0", "unified": "^11.0.0", "vfile": "^6.0.0" } }, "sha512-Dh7l57ianaEoIpzbp0PC9UKAdCSVklD8E5Rpw7ETfbTl3FqcOOgq5q2LVDhgGCkaBv7p24JXikPdvhhmHvKMsw=="],
 
     "remark-stringify": ["remark-stringify@11.0.0", "", { "dependencies": { "@types/mdast": "^4.0.0", "mdast-util-to-markdown": "^2.0.0", "unified": "^11.0.0" } }, "sha512-1OSmLd3awB/t8qdoEOMazZkNsfVTeY4fTsgzcQFdXNq8ToTN4ZGwrMnlda4K6smTFKD+GRV6O48i6Z4iKgPPpw=="],
+
+    "remark-unravel-mdx": ["remark-unravel-mdx@1.0.0", "", { "dependencies": { "unist-util-visit": "^5.0.0" } }, "sha512-LYFUXMOsd9C66296+0Pc5r4leIDOsK75BHcUkAwr0T2iQOhIKKbZoZ+IsDg52sLmV62MAWDBEkHwzDqte6PNkg=="],
 
     "reselect": ["reselect@5.1.1", "", {}, "sha512-K/BG6eIky/SBpzfHZv/dd+9JBFiS4SWV7FIujVyJRux6e45+73RaUHXLmIR1f7WOMaQ0U1km6qwklRQxpJJY0w=="],
 
