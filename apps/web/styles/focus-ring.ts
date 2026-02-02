@@ -1,4 +1,4 @@
-import { tv } from "@repo/utils"
+import { tv } from "tailwind-variants"
 
 /**
  * IMPORTANT:
