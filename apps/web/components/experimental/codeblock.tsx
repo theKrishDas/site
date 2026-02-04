@@ -74,6 +74,7 @@ const Pre = ({ className, ...rest }: React.ComponentProps<"pre">) => (
       render={
         <pre
           className={cn(
+            "not-prose not-fumadocs-codeblock",
             "corner-squircle border:gray-200/50 whitespace-pre rounded-xl border bg-white px-3 py-3 text-[0.9rem] outline-none dark:border-gray-6/80 dark:bg-neutral-950",
             className
           )}
