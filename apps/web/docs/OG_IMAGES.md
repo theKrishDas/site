@@ -25,7 +25,7 @@ Article Path: "kilovolt.mdx"
 ↓
 Hash: "a1b2c3d4e5f6..." (generated from path)
 ↓
-Looks for: "public/og/a1b2c3d4e5f6.png"
+Looks for: "public/static/og/a1b2c3d4e5f6.png"
 ```
 
 **Why hashing?**
@@ -53,7 +53,7 @@ console.log("Hash:", hash); // After the hash generation line
 ### Step 2: Create Your Image
 
 1. Design your OG image (recommended: 1200×630px)
-2. Save it as: `public/og/{hash}.png`
+2. Save it as: `public/static/og/{hash}.png`
 3. Head to `/og/w/kilovolt/image.png`
 
 You should now see the image and get this log on the console.
@@ -72,8 +72,14 @@ export async function GET(_req: Request, { params }) {
   // 2. Create hash from article path
   const hash = createHash("md5").update(page.path).digest("hex");
 
-  // 3. Look for custom image at: public/og/{hash}.png
-  const imagePath = path.join(process.cwd(), "public", "og", `${hash}.png`);
+  // 3. Look for custom image at: public/static/og/{hash}.png
+  const imagePath = path.join(
+    process.cwd(),
+    "public",
+    "static",
+    "og",
+    `${hash}.png`,
+  );
 
   // 4. If custom image exists, serve it
   if (fs.existsSync(imagePath)) {
@@ -146,7 +152,7 @@ When someone shares your article:
 
 | What              | Where                          |
 | ----------------- | ------------------------------ |
-| Custom images     | `public/og/{hash}.png`         |
+| Custom images     | `public/static/og/{hash}.png`  |
 | OG route handler  | `app/og/w/[...slug]/route.tsx` |
 | Image size        | 1200×630px (recommended)       |
 | Supported formats | PNG (currently)                |
