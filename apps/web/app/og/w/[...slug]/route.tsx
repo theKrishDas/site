@@ -17,7 +17,13 @@ export async function GET(
 
   // Generate hash from page title
   const hash = createHash("md5").update(page.path).digest("hex")
-  const imagePath = path.join(process.cwd(), "public", "og", `${hash}.png`)
+  const imagePath = path.join(
+    process.cwd(),
+    "public",
+    "static",
+    "og",
+    `${hash}.png`
+  )
 
   try {
     if (fs.existsSync(imagePath)) {
