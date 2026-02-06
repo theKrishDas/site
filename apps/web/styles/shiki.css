@@ -1,0 +1,23 @@
+/* Shiki Theme Configuration */
+.shiki {
+  background-color: transparent;
+}
+
+/* Light mode: use --shiki-light variable */
+.shiki span {
+  color: var(--shiki-light);
+}
+
+/* Dark mode: use --shiki-dark variable */
+.dark .shiki span {
+  color: var(--shiki-dark);
+}
+
+/* Keep backgrounds transparent and inherit font styles */
+.shiki,
+.shiki span {
+  background-color: transparent;
+  font-style: inherit;
+  font-weight: inherit;
+  text-decoration: inherit;
+}

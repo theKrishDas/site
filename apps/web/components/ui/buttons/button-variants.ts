@@ -1,5 +1,5 @@
 import { tv, type VariantProps } from "tailwind-variants"
-import { focusRing } from "@/styles/focus-ring"
+import { focusRing } from "@/lib/styles/focus-ring"
 
 export const buttonVariants = tv({
   extend: focusRing,

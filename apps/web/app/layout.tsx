@@ -1,4 +1,4 @@
-import "./globals.css"
+import "@/styles/globals.css"
 import { instrumentSerif, inter, jetbrainsMono, sourceSerif } from "@/lib/fonts"
 import { siteMetadata } from "@/lib/metadata"
 import Provider from "./provider"
