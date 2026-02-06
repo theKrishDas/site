@@ -1,0 +1,246 @@
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
+import { AnimatedRacButton } from "./demos/buttons";
+import { AnimationResetDemo } from "./demos/animation-reset-demo";
+import { ButtonColorDemo } from "./demos/button-color-demo";
+
+At this point, the button is functionally complete. It behaves correctly across input types and meets our accessibility goals.
+
+However, behavior is only half of what users perceive. Animation is the other half.
+
+## Why aren't CSS transitions enough?
+
+<figure className="[&_img]:m-0 [&_p]:m-0">
+  ![animation not triggering when tapped too
+  quickly](https://takjwz0vsb.ufs.sh/f/OXSIOmPScgezTeyiePu7e0HgvuImsyaLPfijbpDJ4UcAdF15)
+  <figcaption>
+    Tapping and quickly releasing the button does not trigger the press
+    animation
+  </figcaption>
+</figure>
+
+In the demo above, tapping and quickly releasing the button does not trigger the press animation. The `data-pressed` state turns off almost immediately, so the CSS transition never has time to run.
+
+As a result, users get little to no visual feedback. This makes it harder to tell whether the button was actually pressed, especially during fast interactions.
+
+## Using animation libraries
+
+Because the press state switches too quickly, a CSS transition is not enough. We need an animation that starts when the press begins and finishes even if the press ends immediately.
+
+This is an event-driven animation. CSS can’t listen to JavaScript events like `onPressStart` and `onPressEnd`, so we need an animation library.
+
+There are many options, but in this article, we’ll use Motion because it integrates well with React.
+
+<Callout type="warn">
+  I’ll focus on interaction patterns rather than Motion itself, and I’ll assume
+  you already know the basics of animating with Motion.
+</Callout>
+
+## Get started with the animation
+
+1. Install the `motion` package.
+
+```npm
+npm i motion
+```
+
+2. Then trigger animations with the `useAnimate` hook.
+
+```tsx title="button.tsx"
+import { useAnimate } from "motion/react-mini";
+
+const [scope, animate] = useAnimate();
+
+// Press start animation
+const animatePressStart = (): void => {
+  animate(
+    scope.current,
+    { scale: 0.97, backgroundColor: "#3A3A3C" },
+    { duration: 0 },
+  );
+};
+
+// Press end animation
+const animatePressEnd = (): void => {
+  animate(scope.current, {
+    scale: 1,
+    backgroundColor: "#1C1C1E",
+  });
+};
+```
+
+```tsx title="button.tsx"
+<RacButton
+  onPressEnd={animatePressEnd}
+  onPressStart={animatePressStart}
+  ref={scope}
+/>
+```
+
+We’ll trigger the pressed animation immediately when the press starts and animate back to the idle state when the press ends.
+
+`{duration: 0}` stops any previously running animation and applies the pressed style immediately, without any animation. This is required to flash the button when pressed and run the complete animation when released. This way, users receive immediate visual feedback, even when they release the button too quickly.
+
+<figure>
+  <Tabs items={["Animation reset", "No animation reset"]}>
+    <Tab>
+      <AnimatedRacButton />
+    </Tab>
+    <Tab>
+      <AnimatedRacButton noAnimationReset />
+    </Tab>
+  </Tabs>
+  <figcaption>
+    Try pressing the button quickly and see the difference
+  </figcaption>
+</figure>
+
+## Using variables to animate
+
+Motion animates an element by setting inline styles directly onto it. Inline styles have the highest priority in CSS, so once Motion sets a value, component styles can no longer override it.
+
+Because of this, a class like `bg-[#EFEFEF]` only works until the first animation runs. Once Motion updates the inline `background-color`, your utility classes can no longer take effect.
+
+<figure>
+  <AnimationResetDemo />
+  <figcaption>
+    Press the button and notice the background color is stuck and doesn't reset
+    to its idle state
+  </figcaption>
+</figure>
+
+To avoid this, we don’t animate the color itself and animate a variable instead.
+
+Think of it as splitting responsibilities:
+
+- CSS variables determine the color to be used (default, hover, pressed).
+- Motion animates between those variables.
+
+Because Motion can interpolate CSS variables, this keeps animations smooth while preserving state-driven styling.
+
+So we move the background color into a variable and animate that variable:
+
+```ts
+// [!code word:var(--button-background)]
+// [!code word:var(--button-highlight)]
+const animatePressStart = (): void => {
+  animate(
+    scope.current,
+    { scale: 0.97, backgroundColor: "#3A3A3C" }, // [!code --]
+    { scale: 0.97, backgroundColor: "var(--button-highlight)" }, // [!code ++]
+    { duration: 0 },
+  );
+};
+const animatePressEnd = (): void => {
+  animate(scope.current, {
+    scale: 1,
+    backgroundColor: "#1C1C1E", // [!code --]
+    backgroundColor: "var(--button-background)", // [!code ++]
+  });
+};
+```
+
+```tsx
+<RacButton
+  className={cn(
+    // Variant
+    "bg-ui-blue text-white/93 transition-all data-pressed:scale-97 data-hovered:bg-[color-mix(in_oklab,var(--ui-blue),white_5%)] data-pressed:bg-[color-mix(in_oklab,var(--ui-blue),white_14%)]" // [!code --]
+    "bg-(--button-background) text-white/93 [--button-background:var(--ui-blue)] [--button-highlight:color-mix(in_oklab,var(--ui-blue),white_14%)] data-hovered:bg-[color-mix(in_oklab,var(--button-background),white_5%)]" // [!code ++]
+    className,
+  )}
+/>
+```
+
+Now, because we’re using variables, changing the color from outside the button is as easy as setting a variable. This way, we don’t have to modify the internal API of the button itself. The animation, hover, and active states will all get taken care of.
+
+<Example demo={<ButtonColorDemo />} />
+
+## Finally, a copy-paste button component
+
+As usual, this component follows the same architecture as ShadCN.
+
+Install `react-aria-components` and `motion`, copy-paste this code into <FileName>components/ui/button.tsx</FileName>, and use it directly in your app.
+
+```tsx tab="button.tsx"
+"use client";
+
+import { cn } from "@/lib/utils";
+import { useAnimate } from "motion/react-mini";
+import { type PressEvent, Button as RacButton } from "react-aria-components";
+
+export interface ButtonProps extends React.ComponentProps<typeof RacButton> {}
+export function Button({
+  className,
+  style,
+  type = "button",
+  ...rest
+}: ButtonProps) {
+  const [scope, animate] = useAnimate();
+  const animatePressStart = (e: PressEvent): void => {
+    animate(
+      scope.current,
+      { scale: 0.97, backgroundColor: "var(--button-highlight)" },
+      { duration: 0 },
+    );
+    rest.onPressStart?.(e);
+  };
+  const animatePressEnd = (e: PressEvent): void => {
+    animate(scope.current, {
+      scale: 1,
+      backgroundColor: "var(--button-background)",
+    });
+    rest.onPressEnd?.(e);
+  };
+
+  return (
+    <RacButton
+      {...rest}
+      className={cn(
+        // Base
+        "relative inline-flex w-fit shrink-0 select-none items-center justify-center gap-1.25 whitespace-nowrap rounded-full font-medium text-sm leading-none outline-none transition-all disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-ui-red aria-invalid:ring-ui-red/20 data-focus-visible:border-[color-mix(in_oklab,var(--ui-blue),white_18%)] data-focus-visible:ring-3 data-focus-visible:ring-ui-blue/50 aria-invalid:dark:ring-ui-red/40 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+        // Size
+        "h-10 px-3.5 text-[0.9rem] md:h-8 md:px-3",
+        // Variant
+        "bg-(--button-background) text-white/93 [--button-background:var(--ui-blue)] [--button-highlight:color-mix(in_oklab,var(--ui-blue),white_14%)] data-hovered:bg-[color-mix(in_oklab,var(--button-background),white_5%)]",
+        className,
+      )}
+      onPressEnd={animatePressEnd}
+      onPressStart={animatePressStart}
+      ref={scope}
+      style={{ WebkitTapHighlightColor: "transparent", ...style }}
+      type={type}
+    />
+  );
+}
+```
+
+```css tab="globals.css"
+@import "tailwindcss";
+
+:root {
+  --ui-blue: oklch(60.28% 0.2177 257.42);
+  --ui-red: oklch(65.42% 0.2321 28.66);
+}
+.dark {
+  --ui-blue: oklch(62.43% 0.205577 255.4861);
+  --ui-red: oklch(66.33% 0.2236 28.29);
+}
+
+@theme {
+  --color-ui-blue: var(--ui-blue);
+  --color-ui-red: var(--ui-red);
+}
+```
+
+At this point, the button is complete and can serve as a solid foundation for building higher-level components.
+
+<Spacer className="h-12" />
+
+Buttons concentrate a wide range of input behaviors, such as pointer, keyboard, and touch, into a very small surface area. When those interactions behave predictably, users stop thinking about the interface itself and focus on the action they’re taking.
+
+Getting these details right is often what makes a web interface feel deliberate and native.
+
+---
+
+This article is heavily inspired by prior work and discussions from the React Aria and React Spectrum teams, as well as community write-ups on input modality, press interactions, and accessibility on the web, particularly Sam Selikoff’s video on [building better button interactions](https://youtu.be/ydZSNUbHl_8?si=ipxiBwlHD-_uFBfz).
+
+<Spacer className="block h-12" />
