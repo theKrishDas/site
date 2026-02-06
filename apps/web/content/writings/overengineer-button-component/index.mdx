@@ -1,0 +1,322 @@
+---
+title: "Fixing Button Interactions on the Web"
+description: "Default web buttons hide a lot of interaction complexity. This article shows where they break down across input types and how to build a single, reusable React button that behaves consistently and feels right everywhere on the web."
+index: true
+date: 02-06-2026
+---
+
+import { Preview } from "@/components/mdx/preview";
+import { Example } from "@/components/mdx/example";
+import { Spacer } from "@/components/spacer";
+import {
+  DefaultBasicButton,
+  RacA11yFocusButton,
+  RacBasicButton,
+  RacHoverPressButton,
+} from "./demos/buttons";
+import { DefaultButtonCounter, RacButtonCounter } from "./demos/counters";
+
+The web was created before touch devices were widespread, so **web APIs are designed around mouse events** such as click, hover, and scroll.
+
+When touch devices arrived, browsers added touch support by **emulating mouse events**, allowing taps to trigger events like `onClick` without breaking existing sites.
+
+Touch input also introduced gestures such as double-tap to zoom. So browsers now had to decide whether a tap was a complete action or the start of a gesture. To make that distinction, many browsers, especially older ones, added a short delay (historically around **300 ms**[^1]) before firing emulated mouse events.
+
+<Spacer className="h-20" />
+
+This emulation and delay show up as several user-facing issues in the most
+fundamental interactive element: the _button_.
+
+## Text shouldn’t be selectable on buttons
+
+On mobile devices, long-pressing a default button begins text selection. However, users don’t expect text selection to start while pressing a button.
+
+<Preview>
+  <DefaultBasicButton />
+</Preview>
+
+Press and hold the text on the button with your finger; you'll start selecting the text.
+
+This breaks immersion, distracts from the press itself, and makes the interaction feel more like a web page than an app.
+
+<Callout>
+  Adding `user-select: none{:css}` CSS property to the button could be an option, but even with that added, **Safari still tries to select nearby elements**[^2].
+</Callout>
+
+## Press feedback should be clear
+
+Users expect clear visual feedback when pressing a button. On the web, this is commonly handled using the `:active{:css}` pseudo-selector in CSS.
+
+However, this selector is affected by the mouse event emulation we just talked about[^3].
+
+<figure className="[&_img]:m-0 [&_p]:m-0">
+  ![Button remains highlighted while the touch indicator moves outside the
+  button](https://takjwz0vsb.ufs.sh/f/OXSIOmPScgezWnujBG2kZd5e8FPpWCi3vmTyOc6zhtoDKMXU)
+
+  <figcaption>
+    The button stays highlighted after finger moves outside
+  </figcaption>
+</figure>
+
+Notice how the button stays highlighted even after you drag your finger off. This makes it seem like it’ll activate when you lift your finger.
+
+Native buttons don’t behave this way, which makes the interaction feel inconsistent and untrustworthy.
+
+## Hover is unreliable on touch devices
+
+Hover is a mouse-only interaction, but it still gets triggered on touch devices through event emulation[^4].
+
+Depending on the browser, the `:hover{:css}` pseudo-class may never match, flash briefly after a touch, or remain active long after the interaction ends.
+
+On Chromium browsers, [hover can become “sticky”](https://crbug.com/370155) and behave more like focus. The MDN documentation [explicitly warns](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/:hover) against relying on `:hover` for touch interactions.
+
+## Keyboard input is inconsistent
+
+These inconsistencies aren’t limited to touch; keyboard interactions show similar edge cases in default buttons.
+
+Buttons can be pressed using the <Kbd>Enter</Kbd> or <Kbd>Space</Kbd> keys, but default buttons handle them differently.
+
+Focus the button below and hold down the <Kbd>Enter</Kbd> key, then the <Kbd>Space</Kbd> key, and watch how the counter behaves.
+
+<DefaultButtonCounter />
+
+Notice that holding down the Enter key repeatedly fires the `onClick` event, but the spacebar only fires it when released. This behavior is useful in text inputs, but not for buttons.
+
+## Focus rings should adapt to input
+
+To add a visual affordance for the currently focused element, we commonly use the `focus-visible{:css}` CSS selector. However, the focus ring can remain visible even after the user switches to a pointer.
+
+<figure className="[&_img]:m-0 [&_p]:m-0">
+  ![Focus ring remains visible while clicking the button with a
+  pointer](https://takjwz0vsb.ufs.sh/f/OXSIOmPScgezw7hMHoRRTnGYDmqspXNFK7QjS2vy8g6kV5Eo)
+
+  <figcaption>
+    The focus ring remains visible even after the pointer becomes the active
+    input.
+  </figcaption>
+</figure>
+
+When the user is clearly using a pointer, keeping the focus ring visible adds little value and becomes distracting.
+
+<Spacer className="h-24" />
+
+Individually, these issues may appear harmless. However, taken together, they point to a deeper problem: the default button inherits browser behaviours that were never designed to feel native across input types. This realization sets the stage for exploring how we can address these shortcomings.
+
+<Spacer className="h-12" />
+
+## Browser defaults are not enough
+
+As we’ve seen, CSS alone isn’t enough. Mouse event emulation causes selectors like `:active`, `:hover`, and `:focus-visible` to behave inconsistently across devices. [Browsers’ built-in APIs](https://developer.mozilla.org/en-US/docs/Web/API/Touch) don’t solve this either, because they are affected by the same emulation.
+
+**We need to normalize button behavior across browsers and input types while ignoring emulated mouse events on touch devices**.
+
+Doing this correctly requires handling edge cases across pointer, keyboard, touch, and assistive technologies; consistently, across browsers.
+
+## A normalized interaction layer
+
+We don’t need to build this layer ourselves. [React Aria](https://react-aria.adobe.com/) provides a set of _headless_ components that normalize interactions across input types and platforms.
+
+Its `Button` component handles these interaction details internally. Since it’s headless, it doesn’t include any styles. So you can customize its look however you want.
+
+## Normalizing interactions with React Aria
+
+1.  Install `react-aria-components`.
+
+```npm
+npm i react-aria-components
+```
+
+2. Import the `Button` and use it.
+
+<Example demo={<RacBasicButton />}>
+
+```tsx
+"use client";
+
+import { Button as RacButton } from "react-aria-components";
+import { LuMousePointerClick } from "react-icons/lu";
+
+export default function ButtonDemo() {
+  return (
+    <RacButton className="relative inline-flex h-10 items-center gap-1.25 rounded-full bg-[#EFEFEF] px-3.5 font-medium text-[0.9rem] text-black/87 leading-none md:h-8 md:px-3 dark:bg-[#1C1C1E] dark:text-white/85">
+      <LuMousePointerClick className="-ml-px" size={17} /> Press
+    </RacButton>
+  );
+}
+```
+
+</Example>
+
+This `Button` is built on top of low-level hooks like `usePress` and `useHover`, which normalize pointer, keyboard, touch, and screen-reader interactions.
+
+- They prevent text selection on mobile.
+- Ignore emulated mouse events on touch devices.
+- Handle screen reader virtual clicks.
+- Falls back to mouse and touch events when pointer events are unavailable.
+
+<Callout title="Client Boundary Required">
+  React Aria’s `Button` relies on React hooks and must be used as a client
+  component. If you’re using Next.js or React Server Components, add the `"use
+  client"` directive at the top of the file.
+</Callout>
+
+## Fixing text selection
+
+React Aria temporarily adds `user-select: none{:css}` to the **page** when a press starts, and removes it after a short delay. So we don’t have to manage this manually in most cases.
+
+However, this only kicks in once a press interaction is detected. In some edge cases, such as quickly dragging from the rim of the button, text selection can still occur before React Aria has time to apply the style.
+
+For that reason, I’d still recommend adding `user-select: none{:css}` directly to the button as a baseline. React Aria then acts as a safety net, preventing nearby elements from being selected.
+
+## Replacing selectors with interaction states
+
+React Aria exposes interaction states as data attributes. Because they’re triggered by internal hooks, these states are not affected by mouse event emulation and rely on unified press events.
+
+<figure className="[&_img]:m-0 [&_p]:m-0">
+  ![Data attributes toggling on the button during hover, press, and focus
+  interactions](./assets/screenshot-181225-094846191.png)
+
+  <figcaption>Data attributes update during hover, press, and focus</figcaption>
+</figure>
+
+We can target these attributes in CSS selectors and style the button accordingly.
+
+<Example demo={<RacHoverPressButton />}>
+
+```tsx
+className =
+  "data-pressed:scale-97 data-hovered:bg-[#E4E4E4] data-pressed:bg-[#F4F4F4] dark:data-hovered:bg-[#2B2B2D] dark:data-pressed:bg-[#3A3A3C]"
+```
+
+</Example>
+
+Using the `data-pressed` attribute instead of the `:active{:css}` selector ensures the pressed state is shown only while the user is actually interacting with the button.
+
+<figure className="[&_img]:m-0 [&_p]:m-0">
+  ![Pressed state is removed when the pointer leaves the button before
+  release](https://takjwz0vsb.ufs.sh/f/OXSIOmPScgez4PNlVFJsGWB3kXE2A9LmrnUI1cVyFquHeCPt)
+
+  <figcaption>
+    Pressed state clears when the pointer leaves the button
+  </figcaption>
+</figure>
+
+This gives users a clear indication of whether the button will activate when released.
+
+## Ignoring repeated keyboard events
+
+Unlike the default button, React Aria ignores repeated keyboard events. This ensures that Enter and Space behave consistently and do not repeatedly fire the `onPress` event.
+
+Try holding each key separately and observe how the counter updates.
+
+<RacButtonCounter />
+
+<Callout title="Use onPress instead of onClick">
+
+`onPress` is normalized to support all interaction methods equally. `onClick` is an alias for `onPress`, provided for compatibility only, and should be avoided.
+
+If your app relies on lower-level events (for example, `onPointerUp` or `onMouseEnter`), use the supported event props [listed in the documentation](https://react-aria.adobe.com/Button#api).
+
+</Callout>
+
+## Hiding the ring on pointer interaction
+
+React Aria attaches global event listeners to the document and tracks the most recent input modality.
+
+If the user most recently interacted with a keyboard or assistive technology, the `data-focus-visible` attribute is set to true.
+
+<Example demo={<RacA11yFocusButton />}>
+
+```tsx
+className =
+  "outline-0 data-focus-visible:ring-3 data-focus-visible:ring-blue-600" // [!code word:data-focus-visible]
+```
+
+</Example>
+
+Using this attribute instead of the `focus-visible{:css}` selector, we can show the ring only when the button receives keyboard focus and hide it when the user interacts with a mouse or touch.
+
+<figure className="[&_img]:m-0 [&_p]:m-0">
+  ![Focus ring is removed after a pointer interaction replaces keyboard
+  focus](https://takjwz0vsb.ufs.sh/f/OXSIOmPScgezcsO3SYMp6HSyx8i5GPOmF74AKsjNJ9Q3heMo)
+
+  <figcaption>
+    Focus ring visibility updates based on the active input modality
+  </figcaption>
+</figure>
+
+<Spacer className="h-20" />
+
+Each fix we applied solves a specific problem. Instead of reapplying these fixes every time, we can package them into a single reusable button component.
+
+## A reusable button component
+
+This component follows the same pattern as shadcn/ui. Install `react-aria-components`, copy the component into <FileName>components/ui/button.tsx</FileName>, add the styles to <FileName>globals.css</FileName>, and use it directly in your app.
+
+```tsx tab="button.tsx"
+"use client";
+
+import { cn } from "@/lib/utils";
+import { Button as RacButton } from "react-aria-components";
+
+export interface ButtonProps extends React.ComponentProps<typeof RacButton> {}
+export function Button({
+  className,
+  style,
+  type = "button",
+  ...rest
+}: ButtonProps) {
+  return (
+    <RacButton
+      {...rest}
+      className={cn(
+        // Base
+        "relative inline-flex w-fit shrink-0 select-none items-center justify-center gap-1.25 whitespace-nowrap rounded-full font-medium text-sm leading-none outline-none transition-all disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-ui-red aria-invalid:ring-ui-red/20 data-focus-visible:border-[color-mix(in_oklab,var(--ui-blue),white_18%)] data-focus-visible:ring-3 data-focus-visible:ring-ui-blue/50 aria-invalid:dark:ring-ui-red/40 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+        // Size
+        "h-10 px-3.5 text-[0.9rem] md:h-8 md:px-3",
+        // Variant
+        "bg-ui-blue text-white/93 transition-all data-pressed:scale-97 data-hovered:bg-[color-mix(in_oklab,var(--ui-blue),white_5%)] data-pressed:bg-[color-mix(in_oklab,var(--ui-blue),white_14%)]",
+        className,
+      )}
+      style={{ WebkitTapHighlightColor: "transparent", ...style }}
+      type={type}
+    />
+  );
+}
+```
+
+```css tab="globals.css"
+@import "tailwindcss";
+
+:root {
+  --ui-blue: oklch(60.28% 0.2177 257.42);
+  --ui-red: oklch(65.42% 0.2321 28.66);
+}
+.dark {
+  --ui-blue: oklch(62.43% 0.205577 255.4861);
+  --ui-red: oklch(66.33% 0.2236 28.29);
+}
+
+@theme {
+  --color-ui-blue: var(--ui-blue);
+  --color-ui-red: var(--ui-red);
+}
+```
+
+<Callout title="About the asChild prop" type="warning">
+
+RAC’s button does not support the `asChild` pattern. Handling polymorphic rendering requires additional considerations and is outside the scope of this article. For details, [refer to the docs](https://react-aria.adobe.com/Button#link-buttons).
+
+</Callout>
+
+---
+
+<include>./_animating-the-button.mdx</include>
+
+[^1]: Historically, browsers introduced a ~300 ms delay to detect double-tap gestures for zooming. Modern browsers have mostly removed this delay, but its effects still shape how interaction events behave today. See: [300ms Tap Delay Gone Away](https://developer.chrome.com/blog/300ms-tap-delay-gone-away).
+
+[^2]: Ongoing interoperability issues in Safari have been documented in browser discussions and community reports. See: [User Select interoperability](https://docs.google.com/document/d/1158E0YvlUJ5Lwd-8XZBFqE2Ow_FWLrNVik1MFqk3WRU/edit?tab=t.0#heading=h.91oynr28jjvz), a related [Reddit thread](https://www.reddit.com/r/webdev/comments/g1wvsb/ios_safari_how_to_disable_longpress_text_selection), and the [CSS-Tricks overview](https://css-tricks.com/almanac/properties/u/user-select).
+
+[^3]: This behavior is a known limitation of relying on `:active` for touch interactions. It’s discussed in detail by the React Spectrum team in [Building a Button, Part 1](https://react-spectrum.adobe.com/blog/building-a-button-part-1.html#touch-interactions), with additional context in MDN’s notes on [active state behavior on touch devices](https://developer.mozilla.org/en-US/docs/Web/CSS/:active#notes).
+
+[^4]: The React Spectrum team documents these hover inconsistencies in detail as part of their button interaction research. See their discussion on [hover interactions](https://react-aria.adobe.com/blog/building-a-button-part-2#hover-interactions).
