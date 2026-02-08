@@ -51,8 +51,7 @@ However, this selector is affected by the mouse event emulation we just talked a
 
 <figure className="[&_img]:m-0 [&_p]:m-0">
   ![Button remains highlighted while the touch indicator moves outside the
-  button](https://takjwz0vsb.ufs.sh/f/OXSIOmPScgezWnujBG2kZd5e8FPpWCi3vmTyOc6zhtoDKMXU)
-
+  button](https://tfbt3dh6hk.ufs.sh/f/Ty4EmORQRe5meOBScHF3NOgATz8V4irJuGcIEHvwablKtDUk)
   <figcaption>
     The button stays highlighted after finger moves outside
   </figcaption>
@@ -88,8 +87,7 @@ To add a visual affordance for the currently focused element, we commonly use th
 
 <figure className="[&_img]:m-0 [&_p]:m-0">
   ![Focus ring remains visible while clicking the button with a
-  pointer](https://takjwz0vsb.ufs.sh/f/OXSIOmPScgezw7hMHoRRTnGYDmqspXNFK7QjS2vy8g6kV5Eo)
-
+  pointer](https://tfbt3dh6hk.ufs.sh/f/Ty4EmORQRe5ms65sHqg7RO8G4cYhHF96rNPw0MUiqZE1tfpB)
   <figcaption>
     The focus ring remains visible even after the pointer becomes the active
     input.
@@ -175,7 +173,6 @@ React Aria exposes interaction states as data attributes. Because they’re trig
 <figure className="[&_img]:m-0 [&_p]:m-0">
   ![Data attributes toggling on the button during hover, press, and focus
   interactions](./assets/screenshot-181225-094846191.png)
-
   <figcaption>Data attributes update during hover, press, and focus</figcaption>
 </figure>
 
@@ -185,7 +182,7 @@ We can target these attributes in CSS selectors and style the button accordingly
 
 ```tsx
 className =
-  "data-pressed:scale-97 data-hovered:bg-[#E4E4E4] data-pressed:bg-[#F4F4F4] dark:data-hovered:bg-[#2B2B2D] dark:data-pressed:bg-[#3A3A3C]"
+  "data-pressed:scale-97 data-hovered:bg-[#E4E4E4] data-pressed:bg-[#F4F4F4] dark:data-hovered:bg-[#2B2B2D] dark:data-pressed:bg-[#3A3A3C]";
 ```
 
 </Example>
@@ -194,8 +191,7 @@ Using the `data-pressed` attribute instead of the `:active{:css}` selector ensur
 
 <figure className="[&_img]:m-0 [&_p]:m-0">
   ![Pressed state is removed when the pointer leaves the button before
-  release](https://takjwz0vsb.ufs.sh/f/OXSIOmPScgez4PNlVFJsGWB3kXE2A9LmrnUI1cVyFquHeCPt)
-
+  release](https://tfbt3dh6hk.ufs.sh/f/Ty4EmORQRe5mBflVrWvPBp9HlJugRMjTYVx34nfZrwQS5oXL)
   <figcaption>
     Pressed state clears when the pointer leaves the button
   </figcaption>
@@ -229,7 +225,7 @@ If the user most recently interacted with a keyboard or assistive technology, th
 
 ```tsx
 className =
-  "outline-0 data-focus-visible:ring-3 data-focus-visible:ring-blue-600" // [!code word:data-focus-visible]
+  "outline-0 data-focus-visible:ring-3 data-focus-visible:ring-blue-600"; // [!code word:data-focus-visible]
 ```
 
 </Example>
@@ -238,8 +234,7 @@ Using this attribute instead of the `focus-visible{:css}` selector, we can show 
 
 <figure className="[&_img]:m-0 [&_p]:m-0">
   ![Focus ring is removed after a pointer interaction replaces keyboard
-  focus](https://takjwz0vsb.ufs.sh/f/OXSIOmPScgezcsO3SYMp6HSyx8i5GPOmF74AKsjNJ9Q3heMo)
-
+  focus](https://tfbt3dh6hk.ufs.sh/f/Ty4EmORQRe5mAaKVJiC6RicqQzUJGOKPNvu1x05WlYSfEFZX)
   <figcaption>
     Focus ring visibility updates based on the active input modality
   </figcaption>
