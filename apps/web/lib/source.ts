@@ -1,8 +1,9 @@
 import { type InferPageType, loader } from "fumadocs-core/source"
 import { docs } from "@/.source"
+import { ARTICLE_BASE_PATH } from "./constants"
 
 export const source = loader({
-  baseUrl: "/w",
+  baseUrl: ARTICLE_BASE_PATH,
   source: docs.toFumadocsSource(),
 })
 
@@ -11,6 +12,6 @@ export function getPageImage(page: InferPageType<typeof source>) {
 
   return {
     segments,
-    url: `/og/w/${segments.join("/")}`,
+    url: `/og/${ARTICLE_BASE_PATH}/${segments.join("/")}`,
   }
 }
