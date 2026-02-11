@@ -2,6 +2,9 @@ import defaultMdxComponents from "fumadocs-ui/mdx"
 import type { MDXComponents } from "mdx/types"
 import dynamic from "next/dynamic"
 
+const UnoptimizedImage = dynamic(() =>
+  import("./image").then((mod) => mod.UnoptimizedImage)
+)
 const FileName = dynamic(() =>
   import("@repo/ui/file-name").then((mod) => mod.FileName)
 )
@@ -13,5 +16,6 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     ...components,
     Kbd,
     FileName,
+    Img: UnoptimizedImage,
   }
 }
