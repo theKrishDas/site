@@ -50,8 +50,11 @@ Users expect clear visual feedback when pressing a button. On the web, this is c
 However, this selector is affected by the mouse event emulation we just talked about[^3].
 
 <figure className="[&_img]:m-0 [&_p]:m-0">
-  ![Button remains highlighted while the touch indicator moves outside the
-  button](https://tfbt3dh6hk.ufs.sh/f/Ty4EmORQRe5meOBScHF3NOgATz8V4irJuGcIEHvwablKtDUk)
+  <Img
+    src="https://tfbt3dh6hk.ufs.sh/f/Ty4EmORQRe5meOBScHF3NOgATz8V4irJuGcIEHvwablKtDUk"
+    alt="Button remains highlighted while the touch indicator moves outside the
+  button"
+  />
   <figcaption>
     The button stays highlighted after finger moves outside
   </figcaption>
@@ -86,8 +89,11 @@ Notice that holding down the Enter key repeatedly fires the `onClick` event, but
 To add a visual affordance for the currently focused element, we commonly use the `focus-visible{:css}` CSS selector. However, the focus ring can remain visible even after the user switches to a pointer.
 
 <figure className="[&_img]:m-0 [&_p]:m-0">
-  ![Focus ring remains visible while clicking the button with a
-  pointer](https://tfbt3dh6hk.ufs.sh/f/Ty4EmORQRe5ms65sHqg7RO8G4cYhHF96rNPw0MUiqZE1tfpB)
+  <Img
+    src="https://tfbt3dh6hk.ufs.sh/f/Ty4EmORQRe5ms65sHqg7RO8G4cYhHF96rNPw0MUiqZE1tfpB"
+    alt="Focus ring remains visible while clicking the button with a
+  pointer"
+  />
   <figcaption>
     The focus ring remains visible even after the pointer becomes the active
     input.
@@ -190,8 +196,11 @@ className =
 Using the `data-pressed` attribute instead of the `:active{:css}` selector ensures the pressed state is shown only while the user is actually interacting with the button.
 
 <figure className="[&_img]:m-0 [&_p]:m-0">
-  ![Pressed state is removed when the pointer leaves the button before
-  release](https://tfbt3dh6hk.ufs.sh/f/Ty4EmORQRe5mBflVrWvPBp9HlJugRMjTYVx34nfZrwQS5oXL)
+  <Img
+    src="https://tfbt3dh6hk.ufs.sh/f/Ty4EmORQRe5mBflVrWvPBp9HlJugRMjTYVx34nfZrwQS5oXL"
+    alt="Pressed state is removed when the pointer leaves the button before
+  release"
+  />
   <figcaption>
     Pressed state clears when the pointer leaves the button
   </figcaption>
@@ -233,8 +242,11 @@ className =
 Using this attribute instead of the `focus-visible{:css}` selector, we can show the ring only when the button receives keyboard focus and hide it when the user interacts with a mouse or touch.
 
 <figure className="[&_img]:m-0 [&_p]:m-0">
-  ![Focus ring is removed after a pointer interaction replaces keyboard
-  focus](https://tfbt3dh6hk.ufs.sh/f/Ty4EmORQRe5mAaKVJiC6RicqQzUJGOKPNvu1x05WlYSfEFZX)
+  <Img
+    src="https://tfbt3dh6hk.ufs.sh/f/Ty4EmORQRe5mAaKVJiC6RicqQzUJGOKPNvu1x05WlYSfEFZX"
+    alt="Focus ring is removed after a pointer interaction replaces keyboard
+  focus"
+  />
   <figcaption>
     Focus ring visibility updates based on the active input modality
   </figcaption>
