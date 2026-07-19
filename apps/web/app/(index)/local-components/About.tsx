@@ -21,7 +21,7 @@ export default function About() {
         code on{" "}
         <SocialIcon platform="github" url="https://github.com/krish-das" />, or
         just say hello via{" "}
-        <SocialIcon platform="email" url="mailto:thekrishdas@gmail.com" />.
+        <SocialIcon platform="email" url="mailto:krish@upsher.dev" />.
       </p>
     </section>
   )
